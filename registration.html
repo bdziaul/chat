@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Registration Center</title>
+<style>
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #f5faff;
+  padding: 20px;
+}
+h2 { text-align:center; background-color:#ffffcc; padding:8px; border:1px solid #ccc; }
+p { text-align:center; font-weight:500; margin:10px 0 20px; }
+ul { margin:15px 0; padding-left:20px; }
+input, select { padding:6px; margin:5px 0 12px; width:100%; max-width:250px; display:block; }
+button { background:#8c88ff; color:#fff; border:none; padding:8px 12px; cursor:pointer; }
+button:hover { background:#726eee; }
+a { color:#8c88ff; text-decoration:none; }
+a:hover { text-decoration:underline; }
+</style>
+</head>
+<body>
+
+<h2>Registration Center!!!</h2>
+<p>Please <a href="login.html">Login Here</a> if you already have an account!</p>
+
+<ul>
+  <li>Allowed characters in username and password: a-z, 0-9, - _</li>
+  <li>Username and Password must be at least 8 characters long.</li>
+  <li>Username must not begin with symbols or numbers.</li>
+  <li>Username must not contain capital letters.</li>
+  <li>Other information will help you recover your account.</li>
+</ul>
+
+<form id="regForm">
+  <label>Username:</label>
+  <input type="text" name="username" required pattern="^[a-z][a-z0-9-_]{7,}$" title="Must start with a letter, 8+ characters, no capitals">
+
+  <label>Password:</label>
+  <input type="password" name="password" id="password" required minlength="8">
+
+  <label>Confirm Password:</label>
+  <input type="password" name="confirm_password" id="confirm_password" required minlength="8">
+
+  <label>Birthday:</label>
+  <select name="day" required></select>
+  <select name="month" required></select>
+  <select name="year" required></select>
+
+  <label>Gender:</label>
+  <select name="gender" required>
+    <option value="">Select Gender</option>
+    <option value="Male">Male</option>
+    <option value="Female">Female</option>
+    <option value="Other">Other</option>
+  </select>
+
+  <label>Human Verify Code: <b>ed5f7</b></label>
+  <input type="text" name="verify" required pattern="ed5f7" title="Enter the code exactly as shown">
+
+  <button type="submit">Register</button>
+</form>
+
+<p><a href="index.html">🌐 Home</a></p>
+
+<script>
+// ডায়নামিক দিন/মাস/বছর
+const daySelect = document.querySelector('select[name="day"]');
+for(let i=1;i<=31;i++) daySelect.innerHTML += `<option value="${i}">${i}</option>`;
+
+const monthSelect = document.querySelector('select[name="month"]');
+const months=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+months.forEach(m=> monthSelect.innerHTML += `<option value="${m}">${m}</option>`);
+
+const yearSelect = document.querySelector('select[name="year"]');
+const currentYear = new Date().getFullYear();
+for(let y=currentYear; y>=1900; y--) yearSelect.innerHTML += `<option value="${y}">${y}</option>`;
+
+// পাসওয়ার্ড মিলানো
+document.getElementById('regForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  const pwd = document.getElementById('password').value;
+  const cpwd = document.getElementById('confirm_password').value;
+  if(pwd !== cpwd){
+    alert("Password and Confirm Password does not match!");
+    return;
+  }
+  alert("Registration Successful (Demo)!");
+  this.reset();
+});
+</script>
+
+</body>
+</html>
