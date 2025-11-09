@@ -10,85 +10,121 @@ body {
   font-family: 'Poppins', sans-serif;
   background: url('bg.jpg') no-repeat center center fixed;
   background-size: cover;
-  margin:0;
-  padding:0;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  padding-top: 30px;
 }
+
+/* Glassmorphism Container */
 .container {
   width: 800px;
-  background: rgba(255, 255, 255, 0.9);
-  margin: 40px auto;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(15px);
+  border-radius: 15px;
+  border: 1px solid rgba(255,255,255,0.3);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.2);
   padding: 30px 50px;
-  border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+  color: #fff;
 }
+
+/* Heading */
 h2 {
-  text-align:center;
-  color:#00704d;
-  margin-bottom:10px;
+  text-align: center;
+  margin-bottom: 10px;
+  text-shadow: 0 0 6px rgba(0,0,0,0.4);
 }
 p {
-  text-align:center;
-  font-size:14px;
-  margin-bottom:20px;
+  text-align: center;
+  font-size: 14px;
+  margin-bottom: 20px;
 }
 p a {
-  color:#00704d;
-  text-decoration:none;
-  font-weight:600;
+  color: #c8facc;
+  text-decoration: none;
+  font-weight: 600;
 }
-p a:hover { text-decoration:underline; }
+p a:hover { text-decoration: underline; color: #fff; }
 
+/* Rules */
+.rules {
+  background: rgba(255,255,255,0.1);
+  border-radius: 8px;
+  padding: 15px 20px;
+  margin: 20px 0;
+  border: 1px solid rgba(255,255,255,0.2);
+}
+.rules li {
+  margin: 6px 0;
+  font-size: 14px;
+}
+
+/* Form */
 form {
-  display:grid;
+  display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap:15px 30px;
+  gap: 15px 30px;
 }
 label {
-  font-weight:600;
-  font-size:14px;
-  margin-bottom:3px;
-  display:block;
+  font-weight: 600;
+  font-size: 14px;
+  margin-bottom: 3px;
+  display: block;
 }
 input, select {
-  width:100%;
-  padding:8px;
-  border:1px solid #ccc;
-  border-radius:5px;
-  font-size:14px;
+  width: 100%;
+  padding: 8px;
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: 8px;
+  font-size: 14px;
+  background: rgba(255,255,255,0.25);
+  color: #000;
+  backdrop-filter: blur(5px);
 }
+input:focus, select:focus {
+  outline: none;
+  border-color: #4caf50;
+  background: rgba(255,255,255,0.4);
+}
+
+/* Button */
 button {
   grid-column: span 2;
-  background:#00704d;
-  color:#fff;
-  border:none;
-  padding:10px;
-  font-size:16px;
-  border-radius:6px;
-  cursor:pointer;
-  margin-top:10px;
+  background: rgba(76,175,80,0.8);
+  color: #fff;
+  border: none;
+  padding: 12px;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: 0.3s;
 }
-button:hover { background:#005f3d; }
-
-.rules {
-  background:#f7fff8;
-  border:1px solid #d2f5de;
-  border-radius:6px;
-  padding:10px 20px;
-  margin:20px 0;
+button:hover {
+  background: rgba(76,175,80,1);
 }
-.rules li { margin:6px 0; font-size:14px; }
 
+/* Footer */
 .footer {
-  text-align:center;
-  margin-top:15px;
-  font-size:14px;
+  text-align: center;
+  margin-top: 15px;
+  font-size: 14px;
 }
 .footer a {
-  color:#00704d;
-  text-decoration:none;
-  font-weight:600;
+  color: #c8facc;
+  text-decoration: none;
+  font-weight: 600;
 }
-.footer a:hover { text-decoration:underline; }
+.footer a:hover { text-decoration: underline; color:#fff; }
+
+/* Responsive */
+@media(max-width:850px){
+  .container{width:90%;}
+  form{grid-template-columns: 1fr;}
+}
 </style>
 </head>
 <body>
@@ -123,14 +159,16 @@ button:hover { background:#005f3d; }
 
     <div>
       <label>Date Of Birth:</label>
-      <input type="text" id="birthday" class="date" placeholder="dd/mm/yyyy" required>
+      <input type="text" id="birthday" class="date" placeholder="dd/mm/yyyy" required pattern="^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/[0-9]{4}$" title="Format: dd/mm/yyyy">
     </div>
 
     <div>
       <label>Gender:</label>
       <select required>
         <option value="">Select</option>
-        <option>Male</option><option>Female</option><option>Other</option>
+        <option>Male</option>
+        <option>Female</option>
+        <option>Other</option>
       </select>
     </div>
 
