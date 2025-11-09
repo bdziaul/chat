@@ -6,127 +6,64 @@
 <title>Registration Center</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 <style>
-    body {
-        font-family: 'Poppins', sans-serif;
-        background: linear-gradient(135deg, #e6f4ea, #c3e8d2);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        min-height: 100vh;
-        margin: 0;
-    }
-
-    .container {
-        background: #fff;
-        padding: 25px 30px;
-        border-radius: 15px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        width: 360px;
-        text-align: center;
-    }
-
-    h2 {
-        margin-bottom: 12px;
-        color: #006b3c;
-    }
-
-    p.note {
-        font-size: 13px;
-        color: #444;
-        margin-bottom: 15px;
-    }
-
-    label {
-        display: block;
-        text-align: left;
-        font-weight: 600;
-        margin: 6px 0 2px 2px;
-        font-size: 14px;
-        color: #333;
-    }
-
-    input, select {
-        width: 100%;
-        padding: 7px;
-        border: 1px solid #aaa;
-        border-radius: 6px;
-        margin-bottom: 6px;
-        font-size: 14px;
-    }
-
-    input:focus {
-        border-color: #008b57;
-        outline: none;
-    }
-
-    button {
-        width: 100%;
-        background: #008b57;
-        color: #fff;
-        border: none;
-        padding: 10px;
-        border-radius: 6px;
-        font-size: 15px;
-        cursor: pointer;
-        margin-top: 8px;
-        transition: 0.3s;
-    }
-
-    button:hover {
-        background: #00704d;
-    }
-
-    a {
-        text-decoration: none;
-        color: #00704d;
-        font-weight: 600;
-    }
-
-    .footer {
-        margin-top: 12px;
-        font-size: 13px;
-    }
+body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg,#e8fff3,#c9f5e0);
+  display:flex;justify-content:center;align-items:center;
+  min-height:100vh;margin:0;
+}
+.box {
+  background:#fff;padding:20px 25px;border-radius:12px;
+  box-shadow:0 3px 10px rgba(0,0,0,0.15);
+  width:320px;text-align:center;
+}
+h2 {margin-bottom:8px;color:#006b3c;}
+label {display:block;text-align:left;font-size:14px;margin:4px 0 2px;}
+input,select {
+  width:100%;padding:6px;border:1px solid #aaa;border-radius:5px;
+  margin-bottom:6px;font-size:13px;
+}
+button {
+  width:100%;background:#008b57;color:#fff;border:none;
+  padding:8px;border-radius:5px;font-size:14px;cursor:pointer;
+}
+button:hover{background:#00704d;}
+a{color:#008b57;text-decoration:none;font-weight:600;}
+.small{font-size:12px;color:#444;margin-bottom:10px;}
 </style>
 </head>
 <body>
 
-<div class="container">
-    <h2>Registration Center!!!</h2>
-    <p class="note">Please Login Here if you already have an account!</p>
-    <p class="note">Allowed characters: <b>a-z, 0-9, - _</b><br>
-    Minimum length: 8 characters.<br>
-    Username must start with a letter and be lowercase only.</p>
+<div class="box">
+  <h2>Registration Center</h2>
+  <p class="small">Already have an account? <a href="index.html">Login</a></p>
 
-    <form>
-        <label>Username:</label>
-        <input type="text" placeholder="Enter username" required>
+  <form>
+    <label>Username</label>
+    <input type="text" required>
 
-        <label>Password:</label>
-        <input type="password" placeholder="Enter password" required>
+    <label>Password</label>
+    <input type="password" required>
 
-        <label>Confirm Password:</label>
-        <input type="password" placeholder="Confirm password" required>
+    <label>Confirm Password</label>
+    <input type="password" required>
 
-        <label>Birthday:</label>
-        <input type="date" required>
+    <label>Birthday</label>
+    <input type="date" required>
 
-        <label>Gender:</label>
-        <select required>
-            <option value="">Select gender</option>
-            <option>Male</option>
-            <option>Female</option>
-            <option>Other</option>
-        </select>
+    <label>Gender</label>
+    <select required>
+      <option value="">Select</option>
+      <option>Male</option><option>Female</option><option>Other</option>
+    </select>
 
-        <label>Human Verify Code:</label>
-        <input type="text" value="Ziaul" readonly>
+    <label>Verify Code: <b>Ziaul</b></label>
+    <input type="text" placeholder="Enter Code" required>
 
-        <button type="submit">Register</button>
-    </form>
+    <button type="submit">Register</button>
+  </form>
 
-    <div class="footer">
-        🌐 <a href="index.html">Home</a>
-    </div>
+  <p class="small">🌐 <a href="index.html">Home</a></p>
 </div>
 
 </body>
