@@ -31,7 +31,10 @@ body {
   animation: fadeIn 1.2s ease;
 }
 
-@keyframes fadeIn { from {opacity:0; transform:translateY(-15px);} to {opacity:1; transform:translateY(0);} }
+@keyframes fadeIn { 
+  from {opacity:0; transform:translateY(-15px);} 
+  to {opacity:1; transform:translateY(0);} 
+}
 
 .status-bar {
   display:flex;
@@ -101,7 +104,8 @@ h1 {
 }
 .remember input { margin-right:6px; }
 
-button {
+/* Button Styles */
+button, .link-btn {
   width:100%;
   background:#4CAF50;
   color:#fff;
@@ -112,35 +116,28 @@ button {
   font-weight:600;
   cursor:pointer;
   transition: all 0.3s ease;
+  display:inline-block;
+  text-decoration:none;
   box-shadow: 0 0 0 rgba(76,175,80,0);
 }
-
-button:hover {
+button:hover, .link-btn:hover {
   background:#43A047;
-  box-shadow: 0 0 15px rgba(76,175,80,0.8);
-  transform: scale(1.05);
+  box-shadow:0 0 15px rgba(76,175,80,0.8);
+  transform:scale(1.05);
 }
+
 .links {
   margin-top:18px;
   display:flex;
-  justify-content:space-between;
-  font-size:14px;
+  flex-direction:column;
+  gap:10px;
 }
-.links a {
-  color:#C8E6C9;
-  text-decoration:none;
-  font-weight:500;
-  transition:0.3s;
-}
-.links a:hover { text-decoration:underline; color:#A5D6A7; }
-.links a:last-child { font-weight:700; color:#fff; }
 
 @media (max-width:480px) {
   .login-container { width:90%; padding:30px 25px; }
   h1 { font-size:1.6rem; }
   .input-group input { padding:11px 11px 11px 36px; font-size:14px; }
   button { font-size:15px; padding:11px; }
-  .links { flex-direction:column; gap:8px; text-align:center; }
   .status-bar { flex-direction:column; gap:6px; }
 }
 </style>
@@ -180,19 +177,19 @@ button:hover {
   </form>
 
   <div class="links">
-  <a href="https://www.facebook.com/Ziaulz/" target="_blank" style="color:#fff;">Forgotten password?</a>
-    <a href="registration.html"><b>Create new account</b></a>
+    <a href="https://www.facebook.com/Ziaulz/" target="_blank" class="link-btn">Forgotten password?</a>
+    <a href="registration.html" class="link-btn"><b>Create new account</b></a>
   </div>
 </div>
 
 <script>
-// পাসওয়ার্ড দেখানো/লুকানো
+// Password toggle
 function togglePassword() {
   const passwordInput = document.getElementById("password");
   passwordInput.type = passwordInput.type === "password" ? "text" : "password";
 }
 
-// লাইভ ঘড়ি
+// Live Clock
 function updateClock() {
   const now = new Date();
   let h = now.getHours();
@@ -205,7 +202,7 @@ function updateClock() {
 setInterval(updateClock,1000);
 updateClock();
 
-// অনলাইন ভিজিটর সংখ্যা (ডেমো)
+// Online visitors (demo)
 function updateVisitors() {
   const visitors = Math.floor(Math.random()*50)+1;
   document.getElementById('visitors').textContent = 'Online Visitors: '+visitors;
@@ -213,7 +210,7 @@ function updateVisitors() {
 setInterval(updateVisitors,4000);
 updateVisitors();
 
-// ফর্ম সাবমিট (ডেমো)
+// Login form demo
 document.getElementById('loginForm').addEventListener('submit', function(e){
   e.preventDefault();
   alert("Login Successful (Demo)");
@@ -222,7 +219,3 @@ document.getElementById('loginForm').addEventListener('submit', function(e){
 
 </body>
 </html>
-
-
-
-
