@@ -8,63 +8,157 @@
 <style>
 body {
   font-family: 'Poppins', sans-serif;
-  background: linear-gradient(135deg,#e8fff3,#c9f5e0);
-  display:flex;justify-content:center;align-items:center;
-  min-height:100vh;margin:0;
+  background: linear-gradient(120deg,#e0f7ff,#f0fff3);
+  margin:0;
+  padding:0;
 }
-.box {
-  background:#fff;padding:20px 25px;border-radius:12px;
-  box-shadow:0 3px 10px rgba(0,0,0,0.15);
-  width:320px;text-align:center;
+.container {
+  width: 800px;
+  background: #fff;
+  margin: 40px auto;
+  padding: 30px 50px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.15);
 }
-h2 {margin-bottom:8px;color:#006b3c;}
-label {display:block;text-align:left;font-size:14px;margin:4px 0 2px;}
-input,select {
-  width:100%;padding:6px;border:1px solid #aaa;border-radius:5px;
-  margin-bottom:6px;font-size:13px;
+h2 {
+  text-align:center;
+  color:#00704d;
+  margin-bottom:10px;
+}
+p {
+  text-align:center;
+  font-size:14px;
+  margin-bottom:20px;
+}
+p a {
+  color:#00704d;
+  text-decoration:none;
+  font-weight:600;
+}
+p a:hover { text-decoration:underline; }
+
+form {
+  display:grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap:15px 30px;
+}
+label {
+  font-weight:600;
+  font-size:14px;
+  margin-bottom:3px;
+  display:block;
+}
+input, select {
+  width:100%;
+  padding:8px;
+  border:1px solid #ccc;
+  border-radius:5px;
+  font-size:14px;
 }
 button {
-  width:100%;background:#008b57;color:#fff;border:none;
-  padding:8px;border-radius:5px;font-size:14px;cursor:pointer;
+  grid-column: span 2;
+  background:#00704d;
+  color:#fff;
+  border:none;
+  padding:10px;
+  font-size:16px;
+  border-radius:6px;
+  cursor:pointer;
+  margin-top:10px;
 }
-button:hover{background:#00704d;}
-a{color:#008b57;text-decoration:none;font-weight:600;}
-.small{font-size:12px;color:#444;margin-bottom:10px;}
+button:hover { background:#005f3d; }
+
+.rules {
+  background:#f7fff8;
+  border:1px solid #d2f5de;
+  border-radius:6px;
+  padding:10px 20px;
+  margin:20px 0;
+}
+.rules li { margin:6px 0; font-size:14px; }
+
+.footer {
+  text-align:center;
+  margin-top:15px;
+  font-size:14px;
+}
+.footer a {
+  color:#00704d;
+  text-decoration:none;
+  font-weight:600;
+}
+.footer a:hover { text-decoration:underline; }
 </style>
 </head>
 <body>
 
-<div class="box">
+<div class="container">
   <h2>Registration Center</h2>
-  <p class="small">Already have an account? <a href="index.html">Login</a></p>
+  <p><b>Please <a href="index.html">Login Here</a> if you already have an account!</b></p>
 
-  <form>
-    <label>Username</label>
-    <input type="text" required>
+  <ul class="rules">
+    <li>Allowed characters: a-z, 0-9, - _</li>
+    <li>Minimum 8 characters for Username & Password.</li>
+    <li>Username must start with a letter, not symbols or numbers.</li>
+    <li>No capital letters in username.</li>
+    <li>Other info helps recover your account.</li>
+  </ul>
 
-    <label>Password</label>
-    <input type="password" required>
+  <form id="regForm">
+    <div>
+      <label>Username:</label>
+      <input type="text" name="username" required pattern="^[a-z][a-z0-9-_]{7,}$" title="Start with letter, 8+ chars, no capitals">
+    </div>
 
-    <label>Confirm Password</label>
-    <input type="password" required>
+    <div>
+      <label>Password:</label>
+      <input type="password" id="password" required minlength="8">
+    </div>
 
-    <label>Birthday</label>
-    <input type="date" required>
+    <div>
+      <label>Confirm Password:</label>
+      <input type="password" id="confirm_password" required minlength="8">
+    </div>
 
-    <label>Gender</label>
-    <select required>
-      <option value="">Select</option>
-      <option>Male</option><option>Female</option><option>Other</option>
-    </select>
+    <div>
+      <label>Birthday:</label>
+      <input type="date" required>
+    </div>
 
-    <label>Verify Code: <b>Ziaul</b></label>
-    <input type="text" placeholder="Enter Code" required>
+    <div>
+      <label>Gender:</label>
+      <select required>
+        <option value="">Select</option>
+        <option>Male</option><option>Female</option><option>Other</option>
+      </select>
+    </div>
+
+    <div>
+      <label>Verify Code: <b>Ziaul</b></label>
+      <input type="text" placeholder="Enter Code" required pattern="Ziaul" title="Enter exactly 'Ziaul'">
+    </div>
 
     <button type="submit">Register</button>
   </form>
 
-  <p class="small">🌐 <a href="index.html">Home</a></p>
+  <div class="footer">
+    🌐 <a href="index.html">Home</a>
+  </div>
 </div>
+
+<script>
+document.getElementById('regForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  const pwd = document.getElementById('password').value;
+  const cpwd = document.getElementById('confirm_password').value;
+  if(pwd !== cpwd){
+    alert("Password and Confirm Password do not match!");
+    return;
+  }
+  alert("Registration Successful (Demo)!");
+  this.reset();
+});
+</script>
 
 </body>
 </html>
