@@ -8,6 +8,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 <!-- SweetAlert2 CDN -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<!-- Flatpickr Datepicker -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
 <style>
 body {
@@ -190,7 +193,7 @@ button:hover {
 
     <div>
       <label>Date Of Birth:</label>
-      <input type="text" id="birthday" class="date" placeholder="dd/mm/yyyy" required pattern="^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/[0-9]{4}$" title="Format: dd/mm/yyyy">
+      <input type="text" id="birthday" placeholder="Select your date" required>
     </div>
 
     <div>
@@ -217,6 +220,14 @@ button:hover {
 </div>
 
 <script>
+// Initialize flatpickr for Date of Birth
+flatpickr("#birthday", {
+  dateFormat: "d/m/Y",
+  maxDate: "today",
+  allowInput: true
+});
+
+// Form submit with password match check
 document.getElementById('regForm').addEventListener('submit', function(e){
   e.preventDefault();
   const pwd = document.getElementById('password').value;
