@@ -196,7 +196,7 @@ button:hover {
 
     <div>
       <label>Date Of Birth:</label>
-      <input type="date" id="date" placeholder="DD-MM-YYYY" required>
+      <input type="date" id="date" placeholder="DD-MMM-YYYY" required>
     </div>
 
     <div>
@@ -224,7 +224,7 @@ button:hover {
 
 <script>
 // Initialize flatpickr for Date of Birth
-flatpickr("#birthday", {
+flatpickr("#date", {
   dateFormat: "d M Y",
   maxDate: "today",
   allowInput: true
