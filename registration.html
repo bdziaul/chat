@@ -7,6 +7,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 <!-- SweetAlert2 CDN -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 <style>
 body {
   font-family: 'Poppins', sans-serif;
@@ -44,12 +45,24 @@ p {
   font-size: 15px;
   margin-bottom: 20px;
 }
+
+/* Login Here button style */
 p a {
-  color: #c8facc;
-  text-decoration: none;
+  display: inline-block;
+  background: rgba(76,175,80,0.9);
+  color: #fff;
+  padding: 6px 14px;
+  border-radius: 6px;
   font-weight: 600;
+  text-decoration: none;
+  transition: 0.3s ease;
+  box-shadow: 0 0 0 rgba(76,175,80,0);
 }
-p a:hover { text-decoration: underline; color: #fff; }
+p a:hover {
+  background: rgba(76,175,80,1);
+  box-shadow: 0 0 15px rgba(76,175,80,0.8);
+  transform: scale(1.05);
+}
 
 /* Rules */
 .rules {
@@ -77,7 +90,7 @@ label {
   display: block;
 }
 
-/* White input boxes with glow effect */
+/* Input fields */
 input, select {
   width: 100%;
   padding: 8px;
@@ -88,14 +101,13 @@ input, select {
   color: #000;
   transition: 0.3s ease;
 }
-
 input:focus, select:focus {
   outline: none;
   border-color: #4caf50;
-  box-shadow: 0 0 8px rgba(76,175,80,0.6); /* Green glow */
+  box-shadow: 0 0 8px rgba(76,175,80,0.6);
 }
 
-/* Button with glow hover */
+/* Register button */
 button {
   grid-column: span 2;
   background: rgba(76,175,80,0.9);
@@ -111,22 +123,32 @@ button {
 }
 button:hover {
   background: rgba(76,175,80,1);
-  box-shadow: 0 0 15px rgba(76,175,80,0.8); /* Glow effect */
-  transform: scale(1.02);
+  box-shadow: 0 0 15px rgba(76,175,80,0.8);
+  transform: scale(1.03);
 }
 
-/* Footer */
+/* Footer + Home Button */
 .footer {
   text-align: center;
   margin-top: 15px;
   font-size: 14px;
 }
 .footer a {
-  color: #c8facc;
-  text-decoration: none;
+  display: inline-block;
+  background: rgba(76,175,80,0.9);
+  color: #fff;
+  padding: 6px 14px;
+  border-radius: 6px;
   font-weight: 600;
+  text-decoration: none;
+  transition: 0.3s ease;
+  box-shadow: 0 0 0 rgba(76,175,80,0);
 }
-.footer a:hover { text-decoration: underline; color:#fff; }
+.footer a:hover {
+  background: rgba(76,175,80,1);
+  box-shadow: 0 0 15px rgba(76,175,80,0.8);
+  transform: scale(1.05);
+}
 
 /* Responsive */
 @media(max-width:850px){
@@ -139,7 +161,7 @@ button:hover {
 
 <div class="container">
   <h2>Registration Center</h2>
-  <p><b>Please <a href="index.html">Login Here</a> if you already have an account!</b></p>
+  <p><b>Already have an account?</b> <a href="index.html">Login Here</a></p>
 
   <ul class="rules">
     <li>Allowed characters: a-z, 0-9, - _</li>
@@ -212,11 +234,15 @@ document.getElementById('regForm').addEventListener('submit', function(e){
   Swal.fire({
     icon: 'success',
     title: 'Registration Successful!',
-    text: 'Welcome to the system (Demo Mode)',
+    text: 'Redirecting to Home...',
     confirmButtonColor: '#4caf50',
-    timer: 2500,
+    timer: 2000,
     showConfirmButton: false
   });
+
+  setTimeout(() => {
+    window.location.href = 'index.html';
+  }, 2000);
 
   this.reset();
 });
