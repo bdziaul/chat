@@ -130,10 +130,16 @@ button:hover {
   color:#C8E6C9;
   text-decoration:none;
   font-weight:500;
-  transition:0.3s;
+  position:relative;
+  transition: all 0.3s ease;
+  display:inline-block;
 }
-.links a:hover { text-decoration:underline; color:#A5D6A7; }
-.links a:last-child { font-weight:700; color:#fff; }
+
+.links a:hover {
+  color:#A5D6A7;
+  transform: scale(1.05);
+  text-shadow: 0 0 10px rgba(76,175,80,0.8);
+}
 
 @media (max-width:480px) {
   .login-container { width:90%; padding:30px 25px; }
@@ -222,6 +228,7 @@ document.getElementById('loginForm').addEventListener('submit', function(e){
 
 </body>
 </html>
+
 
 
 
