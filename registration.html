@@ -94,16 +94,18 @@ label {
 /* Input fields */
 .input-container {
   position: relative;
+  width: 100%;
 }
 .input-container input, select {
   width: 100%;
-  padding: 8px 35px 8px 8px;
+  padding: 8px 35px 8px 10px;
   border: 1px solid rgba(0,0,0,0.2);
   border-radius: 8px;
   font-size: 14px;
   background: #ffffff;
   color: #000;
   transition: 0.3s ease;
+  box-sizing: border-box;
 }
 .input-container input:focus, select:focus {
   outline: none;
