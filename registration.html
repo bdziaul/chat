@@ -4,186 +4,114 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Registration Portal</title>
-<link rel="icon" type="image/png" href="https://raw.githubusercontent.com/bdziaul/Login.php/main/login-logo.png">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-
 <style>
-/* Base setup */
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
-body{
-  min-height:100vh;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  background:url('bg.jpg') no-repeat center center/cover;
+body {
+  font-family: 'Poppins', sans-serif;
+  background: url('bg.jpg') no-repeat center center fixed;
+  background-size: cover;
+  padding: 10px;
 }
-
-/* Container with blur effect */
-.container{
-  background:rgba(255,255,255,0.15);
-  backdrop-filter:blur(12px);
-  border:2px solid rgba(255,255,255,0.2);
-  box-shadow:0 4px 30px rgba(0,0,0,0.2);
-  border-radius:15px;
-  width:420px;
-  padding:35px 40px;
-  color:#fff;
-  text-align:center;
-  animation:fadeIn 1s ease;
+h2 {
+  text-align: center;
+  background-color: #ffffcc;
+  padding: 6px;
+  border: 1px solid #ccc;
 }
-
-@keyframes fadeIn{
-  from{opacity:0;transform:translateY(-15px);}
-  to{opacity:1;transform:translateY(0);}
+p {
+  text-align: center;
+  font-weight: 100;
+  margin: 10px 0 20px;
 }
-
-/* Logo */
-.logo{
-  width:80px;
-  height:80px;
-  margin-bottom:10px;
-  border-radius:50%;
-  object-fit:cover;
-  border:2px solid rgba(255,255,255,0.4);
+ul {
+  margin: 15px auto;
+  padding-left: 20px;
+  max-width: 400px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 10px;
+  padding: 10px;
 }
-
-/* Heading */
-h2{margin-bottom:15px;font-size:24px;text-shadow:0 0 6px rgba(0,0,0,0.4);}
-
-/* Paragraph */
-p{
-  font-size:13px;
-  margin-bottom:20px;
+form {
+  max-width: 400px;
+  margin: 0 auto;
+  background-color: rgba(255, 255, 255, 0.85);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 8px rgba(0,0,0,0.2);
 }
-p a{
-  color:#aef7b1;
-  text-decoration:none;
-  font-weight:600;
+input, select {
+  padding: 6px;
+  margin: 5px 0 12px;
+  width: 100%;
 }
-p a:hover{text-decoration:underline;color:#fff;}
-
-/* Form fields */
-form{display:flex;flex-direction:column;align-items:center;}
-label{
-  align-self:flex-start;
-  font-size:14px;
-  margin:4px 0;
-  color:#fff;
+button {
+  background: #8c88ff;
+  color: #fff;
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 5px;
 }
-input,select{
-  width:100%;
-  padding:10px;
-  border:none;
-  border-radius:8px;
-  background:rgba(255,255,255,0.9);
-  font-size:14px;
-  margin-bottom:12px;
-  outline:none;
-  transition:0.3s;
+button:hover {
+  background: #726eee;
 }
-input:focus,select:focus{
-  box-shadow:0 0 0 2px #4caf50;
-  background:#fff;
+a {
+  color: #8c88ff;
+  text-decoration: none;
 }
-
-/* Button */
-button{
-  background:#4caf50;
-  border:none;
-  padding:12px;
-  border-radius:8px;
-  color:#fff;
-  font-weight:600;
-  cursor:pointer;
-  width:100%;
-  font-size:16px;
-  margin-top:8px;
-  transition:0.3s;
+a:hover {
+  text-decoration: underline;
 }
-button:hover{background:#43a047;}
-
-/* Rules box */
-.rules{
-  background:rgba(255,255,255,0.15);
-  border-radius:8px;
-  padding:10px 15px;
-  font-size:12px;
-  margin-bottom:15px;
-  text-align:left;
-  color:#e8ffe9;
-}
-
-/* Footer */
-.footer{
-  margin-top:10px;
-  font-size:13px;
-}
-.footer a{
-  color:#c8facc;
-  text-decoration:none;
-  font-weight:600;
-}
-.footer a:hover{text-decoration:underline;color:#fff;}
 </style>
 </head>
 <body>
 
-<div class="container">
-  <img src="https://raw.githubusercontent.com/bdziaul/Login.php/main/login-logo.png" class="logo" alt="Logo">
-  <h2>Registration Center</h2>
-  <p>Please <a href="index.html">Login Here</a> if you already have an account!</p>
+<h2>Registration Center!!!</h2>
+<p><b>Please <a href="index.html">Login Here</a> if you already have an account!</b></p>
 
-  <div class="rules">
-    <ul>
-      <li>Allowed: a-z, 0-9, - _</li>
-      <li>Minimum 8 characters for username & password</li>
-      <li>Username must start with a letter</li>
-      <li>No capital letters allowed</li>
-    </ul>
-  </div>
+<ul>
+  <li>Allowed characters in username and password: a-z, 0-9, - _</li>
+  <li>Username and Password must be at least 8 characters long.</li>
+  <li>Username must not begin with symbols or numbers.</li>
+  <li>Username must not contain capital letters.</li>
+  <li>Other information will help you recover your account.</li>
+</ul>
 
-  <form id="regForm">
-    <label>Username:</label>
-    <input type="text" name="username" required pattern="^[a-z][a-z0-9-_]{7,}$" title="Start with letter, 8+ chars, no capitals">
+<form id="regForm">
+  <label>Username:</label>
+  <input type="text" name="username" required pattern="^[a-z][a-z0-9-_]{7,}$" title="Must start with a letter, 8+ characters, no capitals">
 
-    <label>Password:</label>
-    <input type="password" id="password" required minlength="8">
+  <label>Password:</label>
+  <input type="password" name="password" id="password" required minlength="8">
 
-    <label>Confirm Password:</label>
-    <input type="password" id="confirm_password" required minlength="8">
+  <label>Confirm Password:</label>
+  <input type="password" name="confirm_password" id="confirm_password" required minlength="8">
 
-    <label>Birthday (dd/mm/yyyy):</label>
-    <input type="text" id="birthday" placeholder="dd/mm/yyyy" required>
+  <label>Birthday (dd/mm/yyyy):</label>
+  <input type="text" name="birthday" placeholder="e.g. 05/11/2000" required pattern="^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/[0-9]{4}$" title="Format: dd/mm/yyyy">
 
-    <label>Gender:</label>
-    <select required>
-      <option value="">Select</option>
-      <option>Male</option>
-      <option>Female</option>
-      <option>Other</option>
-    </select>
+  <label>Gender:</label>
+  <select name="gender" required>
+    <option value="">Select Gender</option>
+    <option value="Male">Male</option>
+    <option value="Female">Female</option>
+    <option value="Other">Other</option>
+  </select>
 
-    <label>Human Verify Code: <b>Ziaul</b></label>
-    <input type="text" placeholder="Enter Code" required pattern="Ziaul" title="Enter exactly 'Ziaul'">
+  <label>Human Verify Code: <b>Ziaul</b></label>
+  <input type="text" name="verify" required pattern="Ziaul" title="Enter the code exactly as shown">
 
-    <button type="submit">Register</button>
-  </form>
+  <button type="submit">Register</button>
+</form>
 
-  <div class="footer">
-    🌐 <a href="index.html">Home</a>
-  </div>
-</div>
+<p style="text-align:center;"><a href="index.html">🌐 Home</a></p>
 
 <script>
-// Password match + Date format check
 document.getElementById('regForm').addEventListener('submit', function(e){
   e.preventDefault();
-  const pwd=document.getElementById('password').value;
-  const cpwd=document.getElementById('confirm_password').value;
-  const date=document.getElementById('birthday').value;
-  if(pwd!==cpwd){alert("Password & Confirm Password do not match!");return;}
-  if(!/^(0?[1-9]|[12][0-9]|3[01])\/(0?[1-9]|1[0-2])\/\d{4}$/.test(date)){
-    alert("Enter valid date in dd/mm/yyyy format!");
+  const pwd = document.getElementById('password').value;
+  const cpwd = document.getElementById('confirm_password').value;
+  if(pwd !== cpwd){
+    alert("Password and Confirm Password does not match!");
     return;
   }
   alert("Registration Successful (Demo)!");
