@@ -164,7 +164,7 @@ button:hover { background:#43A047; }
   <!-- Clock + Online Visitors -->
   <div class="status-bar">
     <div id="clock">00:00:00 AM</div>
-    <div id="visitors">Online: 0</div>
+    <div id="visitors">Online Visitors: 0</div>
   </div>
 
   <!-- Login Form -->
@@ -220,7 +220,7 @@ updateClock();
 // Online Visitors (demo random number)
 function updateVisitors() {
   const visitors = Math.floor(Math.random()*50)+1;
-  document.getElementById('visitors').textContent = 'Online Visitors: '+visitors;
+  document.getElementById('visitors').textContent = 'Online: '+visitors;
 }
 setInterval(updateVisitors,4000);
 updateVisitors();
@@ -228,6 +228,7 @@ updateVisitors();
 
 </body>
 </html>
+
 
 
 
