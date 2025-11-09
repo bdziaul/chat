@@ -8,7 +8,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 <!-- SweetAlert2 CDN -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<!-- Flatpickr Datepicker -->
+<!-- Flatpickr -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
@@ -109,6 +109,29 @@ input:focus, select:focus {
   outline: none;
   border-color: #4caf50;
   box-shadow: 0 0 8px rgba(76,175,80,0.6);
+}
+
+/* Flatpickr customization */
+.flatpickr-calendar {
+  background: rgba(255, 255, 255, 0.2) !important;
+  backdrop-filter: blur(10px);
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.3);
+  box-shadow: 0 5px 20px rgba(0,0,0,0.25);
+}
+.flatpickr-day:hover {
+  background: rgba(76,175,80,0.4);
+  color: #fff;
+  border-radius: 6px;
+}
+.flatpickr-day.selected {
+  background: rgba(76,175,80,0.8);
+  color: #fff;
+  border-radius: 6px;
+}
+.flatpickr-weekday {
+  color: #C8E6C9;
+  font-weight: 600;
 }
 
 /* Register button */
@@ -220,7 +243,7 @@ button:hover {
 </div>
 
 <script>
-// Initialize flatpickr for Date of Birth
+// Initialize flatpickr for Date of Birth with stylish theme
 flatpickr("#birthday", {
   dateFormat: "d/m/Y",
   maxDate: "today",
