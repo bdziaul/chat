@@ -126,11 +126,19 @@ button:hover, .link-btn:hover {
   transform:scale(1.05);
 }
 
-.links {
-  margin-top:18px;
-  display:flex;
-  flex-direction:column;
-  gap:10px;
+.links a {
+  color:#C8E6C9;
+  text-decoration:none;
+  font-weight:500;
+  position:relative;
+  transition: all 0.3s ease;
+  display:inline-block;
+}
+
+.links a:hover {
+  color:#A5D6A7;
+  transform: scale(1.05);
+  text-shadow: 0 0 10px rgba(76,175,80,0.8);
 }
 
 @media (max-width:480px) {
@@ -219,3 +227,4 @@ document.getElementById('loginForm').addEventListener('submit', function(e){
 
 </body>
 </html>
+
