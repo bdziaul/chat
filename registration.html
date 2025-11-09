@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Registration Portal</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+<!-- SweetAlert2 CDN -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <style>
 body {
   font-family: 'Poppins', sans-serif;
@@ -196,11 +198,26 @@ document.getElementById('regForm').addEventListener('submit', function(e){
   e.preventDefault();
   const pwd = document.getElementById('password').value;
   const cpwd = document.getElementById('confirm_password').value;
+
   if(pwd !== cpwd){
-    alert("Password and Confirm Password do not match!");
+    Swal.fire({
+      icon: 'error',
+      title: 'Password Mismatch!',
+      text: 'Password and Confirm Password do not match!',
+      confirmButtonColor: '#e53935'
+    });
     return;
   }
-  alert("Registration Successful (Demo)!");
+
+  Swal.fire({
+    icon: 'success',
+    title: 'Registration Successful!',
+    text: 'Welcome to the system (Demo Mode)',
+    confirmButtonColor: '#4caf50',
+    timer: 2500,
+    showConfirmButton: false
+  });
+
   this.reset();
 });
 </script>
