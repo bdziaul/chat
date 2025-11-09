@@ -6,11 +6,7 @@
 <title>Registration Portal</title>
 <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/bdziaul/Login.php/main/login-logo.png">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-<!-- SweetAlert2 CDN -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<!-- Flatpickr -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
 <style>
 body {
@@ -49,8 +45,6 @@ p {
   font-size: 15px;
   margin-bottom: 20px;
 }
-
-/* Login Here button style */
 p a {
   display: inline-block;
   background: rgba(76,175,80,0.9);
@@ -94,7 +88,7 @@ label {
   display: block;
 }
 
-/* Input fields */
+/* Input fields & Selects */
 input, select {
   width: 100%;
   padding: 8px;
@@ -109,29 +103,6 @@ input:focus, select:focus {
   outline: none;
   border-color: #4caf50;
   box-shadow: 0 0 8px rgba(76,175,80,0.6);
-}
-
-/* Flatpickr customization */
-.flatpickr-calendar {
-  background: rgba(255, 255, 255, 0.2) !important;
-  backdrop-filter: blur(10px);
-  border-radius: 10px;
-  border: 1px solid rgba(255,255,255,0.3);
-  box-shadow: 0 5px 20px rgba(0,0,0,0.25);
-}
-.flatpickr-day:hover {
-  background: rgba(76,175,80,0.4);
-  color: #fff;
-  border-radius: 6px;
-}
-.flatpickr-day.selected {
-  background: rgba(76,175,80,0.8);
-  color: #fff;
-  border-radius: 6px;
-}
-.flatpickr-weekday {
-  color: #C8E6C9;
-  font-weight: 600;
 }
 
 /* Register button */
@@ -216,7 +187,40 @@ button:hover {
 
     <div>
       <label>Date Of Birth:</label>
-      <input type="text" id="birthday" placeholder="Select your date" required>
+      <div style="display:flex; gap:10px;">
+        <select id="dob-day" required>
+          <option value="">DD</option>
+          <script>
+            for(let d=1; d<=31; d++){document.write('<option value="'+d+'">'+d+'</option>');}
+          </script>
+        </select>
+
+        <select id="dob-month" required>
+          <option value="">MMM</option>
+          <option value="Jan">Jan</option>
+          <option value="Feb">Feb</option>
+          <option value="Mar">Mar</option>
+          <option value="Apr">Apr</option>
+          <option value="May">May</option>
+          <option value="Jun">Jun</option>
+          <option value="Jul">Jul</option>
+          <option value="Aug">Aug</option>
+          <option value="Sep">Sep</option>
+          <option value="Oct">Oct</option>
+          <option value="Nov">Nov</option>
+          <option value="Dec">Dec</option>
+        </select>
+
+        <select id="dob-year" required>
+          <option value="">YYYY</option>
+          <script>
+            const currentYear = new Date().getFullYear();
+            for(let y=currentYear; y>=1900; y--){
+              document.write('<option value="'+y+'">'+y+'</option>');
+            }
+          </script>
+        </select>
+      </div>
     </div>
 
     <div>
@@ -243,18 +247,13 @@ button:hover {
 </div>
 
 <script>
-// Initialize flatpickr for Date of Birth with stylish theme
-flatpickr("#birthday", {
-  dateFormat: "d/m/Y",
-  maxDate: "today",
-  allowInput: true
-});
-
-// Form submit with password match check
 document.getElementById('regForm').addEventListener('submit', function(e){
   e.preventDefault();
   const pwd = document.getElementById('password').value;
   const cpwd = document.getElementById('confirm_password').value;
+  const day = document.getElementById('dob-day').value;
+  const month = document.getElementById('dob-month').value;
+  const year = document.getElementById('dob-year').value;
 
   if(pwd !== cpwd){
     Swal.fire({
@@ -266,10 +265,22 @@ document.getElementById('regForm').addEventListener('submit', function(e){
     return;
   }
 
+  if(!day || !month || !year){
+    Swal.fire({
+      icon: 'error',
+      title: 'Invalid Date!',
+      text: 'Please select Day, Month, and Year.',
+      confirmButtonColor: '#e53935'
+    });
+    return;
+  }
+
+  const dob = day + '/' + month + '/' + year;
+
   Swal.fire({
     icon: 'success',
     title: 'Registration Successful!',
-    text: 'Redirecting to Home...',
+    text: 'Date of Birth: ' + dob + '\nRedirecting to Home...',
     confirmButtonColor: '#4caf50',
     timer: 2000,
     showConfirmButton: false
