@@ -74,20 +74,23 @@ label {
   margin-bottom: 3px;
   display: block;
 }
+
+/* White input boxes */
 input, select {
   width: 100%;
   padding: 8px;
-  border: 1px solid rgba(255,255,255,0.3);
+  border: 1px solid rgba(0,0,0,0.2);
   border-radius: 8px;
   font-size: 14px;
-  background: rgba(255,255,255,0.25);
-  color: #000;
+  background: #ffffff;  /* White background */
+  color: #000;          /* Black text */
   backdrop-filter: blur(5px);
 }
+
 input:focus, select:focus {
   outline: none;
   border-color: #4caf50;
-  background: rgba(255,255,255,0.4);
+  background: #fff;
 }
 
 /* Button */
@@ -133,7 +136,7 @@ button:hover {
   <h2>Registration Center</h2>
   <p><b>Please <a href="index.html">Login Here</a> if you already have an account!</b></p>
 
-<ul class="rules">
+  <ul class="rules">
     <li>Allowed characters: a-z, 0-9, - _</li>
     <li>Minimum 8 characters for Username & Password.</li>
     <li>Username must start with a letter, not symbols or numbers.</li>
