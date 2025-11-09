@@ -7,6 +7,9 @@
 <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/bdziaul/Login.php/main/login-logo.png">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<!-- Flatpickr -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
 <style>
 body {
@@ -88,7 +91,7 @@ label {
   display: block;
 }
 
-/* Input fields & Selects */
+/* Input fields */
 input, select {
   width: 100%;
   padding: 8px;
@@ -103,6 +106,12 @@ input:focus, select:focus {
   outline: none;
   border-color: #4caf50;
   box-shadow: 0 0 8px rgba(76,175,80,0.6);
+}
+
+/* Placeholder subtle */
+input::placeholder {
+  color: rgba(0,0,0,0.5);
+  font-style: italic;
 }
 
 /* Register button */
@@ -187,40 +196,7 @@ button:hover {
 
     <div>
       <label>Date Of Birth:</label>
-      <div style="display:flex; gap:10px;">
-        <select id="dob-day" required>
-          <option value="">DD</option>
-          <script>
-            for(let d=1; d<=31; d++){document.write('<option value="'+d+'">'+d+'</option>');}
-          </script>
-        </select>
-
-        <select id="dob-month" required>
-          <option value="">MMM</option>
-          <option value="Jan">Jan</option>
-          <option value="Feb">Feb</option>
-          <option value="Mar">Mar</option>
-          <option value="Apr">Apr</option>
-          <option value="May">May</option>
-          <option value="Jun">Jun</option>
-          <option value="Jul">Jul</option>
-          <option value="Aug">Aug</option>
-          <option value="Sep">Sep</option>
-          <option value="Oct">Oct</option>
-          <option value="Nov">Nov</option>
-          <option value="Dec">Dec</option>
-        </select>
-
-        <select id="dob-year" required>
-          <option value="">YYYY</option>
-          <script>
-            const currentYear = new Date().getFullYear();
-            for(let y=currentYear; y>=1900; y--){
-              document.write('<option value="'+y+'">'+y+'</option>');
-            }
-          </script>
-        </select>
-      </div>
+      <input type="text" id="birthday" placeholder="dd mmm yyyy" required>
     </div>
 
     <div>
@@ -247,13 +223,19 @@ button:hover {
 </div>
 
 <script>
+// Initialize flatpickr for Date of Birth
+flatpickr("#birthday", {
+  dateFormat: "d M Y",
+  maxDate: "today",
+  allowInput: true
+});
+
+// Form submit with validation
 document.getElementById('regForm').addEventListener('submit', function(e){
   e.preventDefault();
   const pwd = document.getElementById('password').value;
   const cpwd = document.getElementById('confirm_password').value;
-  const day = document.getElementById('dob-day').value;
-  const month = document.getElementById('dob-month').value;
-  const year = document.getElementById('dob-year').value;
+  const dob = document.getElementById('birthday').value;
 
   if(pwd !== cpwd){
     Swal.fire({
@@ -265,17 +247,15 @@ document.getElementById('regForm').addEventListener('submit', function(e){
     return;
   }
 
-  if(!day || !month || !year){
+  if(!dob){
     Swal.fire({
       icon: 'error',
       title: 'Invalid Date!',
-      text: 'Please select Day, Month, and Year.',
+      text: 'Please select your Date of Birth.',
       confirmButtonColor: '#e53935'
     });
     return;
   }
-
-  const dob = day + '/' + month + '/' + year;
 
   Swal.fire({
     icon: 'success',
