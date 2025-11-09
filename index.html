@@ -111,10 +111,15 @@ button {
   font-size:16px;
   font-weight:600;
   cursor:pointer;
-  transition:0.3s;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 0 rgba(76,175,80,0);
 }
-button:hover { background:#43A047; }
 
+button:hover {
+  background:#43A047;
+  box-shadow: 0 0 15px rgba(76,175,80,0.8);
+  transform: scale(1.05);
+}
 .links {
   margin-top:18px;
   display:flex;
@@ -217,6 +222,7 @@ document.getElementById('loginForm').addEventListener('submit', function(e){
 
 </body>
 </html>
+
 
 
 
