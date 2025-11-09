@@ -3,107 +3,148 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Registration Portal</title>
+<title>Registration Center</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 <style>
 body {
   font-family: 'Poppins', sans-serif;
-  background: url('bg.jpg') no-repeat center center fixed;
-  background-size: cover;
-  padding: 10px;
+  background: linear-gradient(120deg,#e0f7ff,#f0fff3);
+  margin:0;
+  padding:0;
+}
+.container {
+  width: 800px;
+  background: #fff;
+  margin: 40px auto;
+  padding: 30px 50px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.15);
 }
 h2 {
-  text-align: center;
-  background-color: #ffffcc;
-  padding: 6px;
-  border: 1px solid #ccc;
+  text-align:center;
+  color:#00704d;
+  margin-bottom:10px;
 }
 p {
-  text-align: center;
-  font-weight: 100;
-  margin: 10px 0 20px;
+  text-align:center;
+  font-size:14px;
+  margin-bottom:20px;
 }
-ul {
-  margin: 15px auto;
-  padding-left: 20px;
-  max-width: 400px;
-  background-color: rgba(255, 255, 255, 0.8);
-  border-radius: 10px;
-  padding: 10px;
+p a {
+  color:#00704d;
+  text-decoration:none;
+  font-weight:600;
 }
+p a:hover { text-decoration:underline; }
+
 form {
-  max-width: 400px;
-  margin: 0 auto;
-  background-color: rgba(255, 255, 255, 0.85);
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 0 8px rgba(0,0,0,0.2);
+  display:grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap:15px 30px;
+}
+label {
+  font-weight:600;
+  font-size:14px;
+  margin-bottom:3px;
+  display:block;
 }
 input, select {
-  padding: 6px;
-  margin: 5px 0 12px;
-  width: 100%;
+  width:100%;
+  padding:8px;
+  border:1px solid #ccc;
+  border-radius:5px;
+  font-size:14px;
 }
 button {
-  background: #8c88ff;
-  color: #fff;
-  border: none;
-  padding: 8px 12px;
-  cursor: pointer;
-  border-radius: 5px;
+  grid-column: span 2;
+  background:#00704d;
+  color:#fff;
+  border:none;
+  padding:10px;
+  font-size:16px;
+  border-radius:6px;
+  cursor:pointer;
+  margin-top:10px;
 }
-button:hover {
-  background: #726eee;
+button:hover { background:#005f3d; }
+
+.rules {
+  background:#f7fff8;
+  border:1px solid #d2f5de;
+  border-radius:6px;
+  padding:10px 20px;
+  margin:20px 0;
 }
-a {
-  color: #8c88ff;
-  text-decoration: none;
+.rules li { margin:6px 0; font-size:14px; }
+
+.footer {
+  text-align:center;
+  margin-top:15px;
+  font-size:14px;
 }
-a:hover {
-  text-decoration: underline;
+.footer a {
+  color:#00704d;
+  text-decoration:none;
+  font-weight:600;
 }
+.footer a:hover { text-decoration:underline; }
 </style>
 </head>
 <body>
 
-<h2>Registration Center!!!</h2>
-<p><b>Please <a href="index.html">Login Here</a> if you already have an account!</b></p>
+<div class="container">
+  <h2>Registration Center</h2>
+  <p><b>Please <a href="index.html">Login Here</a> if you already have an account!</b></p>
 
-<ul>
-  <li>Allowed characters in username and password: a-z, 0-9, - _</li>
-  <li>Username and Password must be at least 8 characters long.</li>
-  <li>Username must not begin with symbols or numbers.</li>
-  <li>Username must not contain capital letters.</li>
-  <li>Other information will help you recover your account.</li>
-</ul>
+  <ul class="rules">
+    <li>Allowed characters: a-z, 0-9, - _</li>
+    <li>Minimum 8 characters for Username & Password.</li>
+    <li>Username must start with a letter, not symbols or numbers.</li>
+    <li>No capital letters in username.</li>
+    <li>Other info helps recover your account.</li>
+  </ul>
 
-<form id="regForm">
-  <label>Username:</label>
-  <input type="text" name="username" required pattern="^[a-z][a-z0-9-_]{7,}$" title="Must start with a letter, 8+ characters, no capitals">
+  <form id="regForm">
+    <div>
+      <label>Username:</label>
+      <input type="text" name="username" required pattern="^[a-z][a-z0-9-_]{7,}$" title="Start with letter, 8+ chars, no capitals">
+    </div>
 
-  <label>Password:</label>
-  <input type="password" name="password" id="password" required minlength="8">
+    <div>
+      <label>Password:</label>
+      <input type="password" id="password" required minlength="8">
+    </div>
 
-  <label>Confirm Password:</label>
-  <input type="password" name="confirm_password" id="confirm_password" required minlength="8">
+    <div>
+      <label>Confirm Password:</label>
+      <input type="password" id="confirm_password" required minlength="8">
+    </div>
 
-  <label>Birthday (dd/mm/yyyy):</label>
-  <input type="text" name="birthday" placeholder="e.g. 05/11/2000" required pattern="^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/[0-9]{4}$" title="Format: dd/mm/yyyy">
+    <div>
+      <label>Date Of Birth:</label>
+      <input type="text" id="birthday" class="date" placeholder="dd/mm/yyyy" required>
+    </div>
 
-  <label>Gender:</label>
-  <select name="gender" required>
-    <option value="">Select Gender</option>
-    <option value="Male">Male</option>
-    <option value="Female">Female</option>
-    <option value="Other">Other</option>
-  </select>
+    <div>
+      <label>Gender:</label>
+      <select required>
+        <option value="">Select</option>
+        <option>Male</option><option>Female</option><option>Other</option>
+      </select>
+    </div>
 
-  <label>Human Verify Code: <b>Ziaul</b></label>
-  <input type="text" name="verify" required pattern="Ziaul" title="Enter the code exactly as shown">
+    <div>
+      <label>Verify Code: <b>Ziaul</b></label>
+      <input type="text" placeholder="Enter Code" required pattern="Ziaul" title="Enter exactly 'Ziaul'">
+    </div>
 
-  <button type="submit">Register</button>
-</form>
+    <button type="submit">Register</button>
+  </form>
 
-<p style="text-align:center;"><a href="index.html">🌐 Home</a></p>
+  <div class="footer">
+    🌐 <a href="index.html">Home</a>
+  </div>
+</div>
 
 <script>
 document.getElementById('regForm').addEventListener('submit', function(e){
@@ -111,7 +152,7 @@ document.getElementById('regForm').addEventListener('submit', function(e){
   const pwd = document.getElementById('password').value;
   const cpwd = document.getElementById('confirm_password').value;
   if(pwd !== cpwd){
-    alert("Password and Confirm Password does not match!");
+    alert("Password and Confirm Password do not match!");
     return;
   }
   alert("Registration Successful (Demo)!");
