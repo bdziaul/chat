@@ -75,3 +75,22 @@ button:hover {
     0% {opacity: 0; transform: translateY(-20px);}
     100% {opacity: 1; transform: translateY(0);}
 }
+
+.links {
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+}
+
+.links a {
+    color: #4CAF50;
+    text-decoration: none;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.links a:hover {
+    text-decoration: underline;
+    color: #388E3C;
+}
