@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
 * {
     margin: 0;
@@ -8,83 +8,134 @@
 }
 
 body {
-    height: 100vh;
-    background: url('bg.jpg') no-repeat center center/cover;
     display: flex;
     justify-content: center;
     align-items: center;
+    min-height: 100vh;
+    background: url('bg.jpg') no-repeat center center/cover;
 }
 
+/* === Login Box === */
 .login-container {
-    background-color: rgba(255, 255, 255, 0.85);
-    padding: 40px 30px;
-    border-radius: 12px;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
-    width: 100%;
-    max-width: 400px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(12px);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+    padding: 40px 35px;
+    width: 350px;
     text-align: center;
-    animation: fadeIn 1s ease-in-out;
+    animation: fadeIn 1.2s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-15px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 .login-container h1 {
-    margin-bottom: 30px;
-    font-size: 28px;
-    color: #333;
+    font-size: 2rem;
+    color: #fff;
+    margin-bottom: 25px;
+    text-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
 }
 
+/* === Input Group === */
 .input-group {
-    display: flex;
-    align-items: center;
+    position: relative;
+    width: 100%;
     margin-bottom: 20px;
-    border-bottom: 2px solid #ccc;
-    padding: 5px;
 }
 
 .input-group ion-icon {
-    margin-right: 10px;
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #4CAF50;
     font-size: 20px;
-    color: #555;
 }
 
 .input-group input {
+    width: 100%;
+    padding: 12px 12px 12px 38px;
+    border-radius: 8px;
     border: none;
     outline: none;
-    flex: 1;
-    font-size: 16px;
-    padding: 10px 0;
-    background: transparent;
+    background: rgba(255, 255, 255, 0.85);
+    font-size: 15px;
+    transition: 0.3s;
 }
 
+.input-group input:focus {
+    background: #fff;
+    box-shadow: 0 0 0 2px #4CAF50;
+}
+
+/* === Password Show Button === */
+.password-group {
+    position: relative;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 18px;
+    color: #444;
+    user-select: none;
+    transition: color 0.2s;
+}
+
+.toggle-password:hover {
+    color: #4CAF50;
+}
+
+/* === Remember me === */
+.remember {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 18px;
+    font-size: 14px;
+    color: #fff;
+    text-align: left;
+}
+
+.remember input {
+    margin-right: 6px;
+}
+
+/* === Button === */
 button {
     width: 100%;
+    background: #4CAF50;
+    color: #fff;
     padding: 12px;
     border: none;
-    border-radius: 6px;
-    background-color: #4CAF50;
-    color: white;
+    border-radius: 8px;
     font-size: 16px;
+    font-weight: 600;
     cursor: pointer;
     transition: 0.3s;
 }
 
 button:hover {
-    background-color: #45a049;
+    background: #43A047;
 }
 
-@keyframes fadeIn {
-    0% {opacity: 0; transform: translateY(-20px);}
-    100% {opacity: 1; transform: translateY(0);}
-}
-
+/* === Links === */
 .links {
-    margin-top: 15px;
+    margin-top: 18px;
     display: flex;
     justify-content: space-between;
     font-size: 14px;
 }
 
 .links a {
-    color: #4CAF50;
+    color: #C8E6C9;
     text-decoration: none;
     font-weight: 500;
     transition: 0.3s;
@@ -92,5 +143,39 @@ button:hover {
 
 .links a:hover {
     text-decoration: underline;
-    color: #388E3C;
+    color: #A5D6A7;
+}
+
+/* Make "Create new account" bold */
+.links a:last-child {
+    font-weight: 700;
+    color: #fff;
+}
+
+/* === Responsive for Mobile === */
+@media (max-width: 480px) {
+    .login-container {
+        width: 90%;
+        padding: 30px 25px;
+    }
+
+    .login-container h1 {
+        font-size: 1.6rem;
+    }
+
+    .input-group input {
+        padding: 11px 11px 11px 36px;
+        font-size: 14px;
+    }
+
+    button {
+        font-size: 15px;
+        padding: 11px;
+    }
+
+    .links {
+        flex-direction: column;
+        gap: 8px;
+        text-align: center;
+    }
 }
