@@ -12,7 +12,7 @@
     <style>
         body {
             font-family: 'Poppins', sans-serif;
-            background: #f2f2f2;
+            background: linear-gradient(135deg, #e6f4ea, #c8ebd2);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -20,17 +20,17 @@
         }
 
         .login-container {
-            background: white;
+            background: #ffffff;
             padding: 40px 30px;
-            border-radius: 12px;
-            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+            border-radius: 14px;
+            box-shadow: 0 0 18px rgba(0, 128, 0, 0.15);
             width: 320px;
             text-align: center;
         }
 
         h1 {
             margin-bottom: 25px;
-            color: #333;
+            color: #006b2e;
         }
 
         .input-group {
@@ -42,22 +42,28 @@
             position: absolute;
             top: 12px;
             left: 10px;
-            color: #555;
+            color: #2f7a42;
         }
 
         .input-group input {
             width: 100%;
             padding: 10px 10px 10px 35px;
-            border: 1px solid #ccc;
+            border: 1px solid #a0d1a4;
             border-radius: 6px;
             outline: none;
             font-size: 14px;
+            background-color: #f7fff9;
+        }
+
+        .input-group input:focus {
+            border-color: #1b8a3a;
+            box-shadow: 0 0 4px #84d7a2;
         }
 
         button {
             width: 100%;
             padding: 10px;
-            background: #0078d7;
+            background: #00994c;
             color: white;
             border: none;
             border-radius: 6px;
@@ -67,7 +73,7 @@
         }
 
         button:hover {
-            background: #005fa3;
+            background: #007a3b;
         }
 
         .links {
@@ -78,13 +84,14 @@
         }
 
         .links a {
-            color: #0078d7;
+            color: #007a3b;
             text-decoration: none;
             transition: 0.3s;
         }
 
         .links a:hover {
             text-decoration: underline;
+            color: #005f2e;
         }
     </style>
 </head>
@@ -103,7 +110,6 @@
             <button type="submit">Sign In</button>
         </form>
 
-        <!-- নিচে নতুন লিঙ্ক সেকশন -->
         <div class="links">
             <a href="#">Forgotten password?</a>
             <a href="#">Create new account</a>
