@@ -11,7 +11,6 @@
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
 <style>
-/* ----- আগের CSS অপরিবর্তিত ----- */
 body {
   font-family: 'Poppins', sans-serif;
   background: url('bg.jpg') no-repeat center center fixed;
@@ -53,7 +52,6 @@ p a {
   font-weight: 600;
   text-decoration: none;
   transition: 0.3s ease;
-  box-shadow: 0 0 0 rgba(76,175,80,0);
 }
 p a:hover {
   background: rgba(76,175,80,1);
@@ -90,16 +88,6 @@ input, select {
   font-size: 14px;
   background: #ffffff;
   color: #000;
-  transition: 0.3s ease;
-}
-input:focus, select:focus {
-  outline: none;
-  border-color: #4caf50;
-  box-shadow: 0 0 8px rgba(76,175,80,0.6);
-}
-input::placeholder {
-  color: rgba(0,0,0,0.5);
-  font-style: italic;
 }
 button {
   grid-column: span 2;
@@ -111,8 +99,7 @@ button {
   border-radius: 8px;
   cursor: pointer;
   margin-top: 10px;
-  transition: all 0.3s ease;
-  box-shadow: 0 0 0 rgba(76,175,80,0);
+  transition: 0.3s ease;
 }
 button:hover {
   background: rgba(76,175,80,1);
@@ -133,7 +120,6 @@ button:hover {
   font-weight: 600;
   text-decoration: none;
   transition: 0.3s ease;
-  box-shadow: 0 0 0 rgba(76,175,80,0);
 }
 .footer a:hover {
   background: rgba(76,175,80,1);
@@ -163,7 +149,7 @@ button:hover {
   <form id="regForm">
     <div>
       <label>Username:</label>
-      <input type="text" id="username" name="username" required pattern="^[a-z][a-z0-9-_]{7,}$" title="Start with letter, 8+ chars, no capitals">
+      <input type="text" id="username" required pattern="^[a-z][a-z0-9-_]{7,}$">
     </div>
 
     <div>
@@ -178,7 +164,7 @@ button:hover {
 
     <div>
       <label>Date Of Birth:</label>
-      <input type="date" id="birthday" placeholder="DD-MMM-YYYY" required>
+      <input type="date" id="birthday" required>
     </div>
 
     <div>
@@ -205,95 +191,49 @@ button:hover {
 </div>
 
 <script>
-// flatpickr setup
 flatpickr("#birthday", {
   dateFormat: "Y-m-d",
   maxDate: "today",
   allowInput: true
 });
 
-// validation and submit handler
-document.getElementById('regForm').addEventListener('submit', async function(e){
+document.getElementById('regForm').addEventListener('submit', function(e){
   e.preventDefault();
 
   const username = document.getElementById('username').value.trim();
-  const usernamePattern = /^[a-z][a-z0-9-_]{7,}$/;
-  const pwd = document.getElementById('password').value;
-  const cpwd = document.getElementById('confirm_password').value;
+  const password = document.getElementById('password').value.trim();
+  const confirm = document.getElementById('confirm_password').value.trim();
   const dob = document.getElementById('birthday').value;
 
-  // Password match check
-  if (pwd !== cpwd) {
+  if (password !== confirm) {
     Swal.fire({
       icon: 'error',
       title: 'Password Doesn’t Match!',
-      text: 'Please check your Password and Confirm Password.',
       confirmButtonColor: '#e53935'
     });
     return;
   }
 
-  // Username validation
-  if (!usernamePattern.test(username)) {
-    Swal.fire({
-      icon: 'error',
-      title: 'Username Is Not Valid!',
-      text: 'Please follow the username rules properly.',
-      confirmButtonColor: '#e53935'
-    });
-    return;
-  }
-
-  // DOB validation (1960 - 2015)
-  if (!dob) {
-    Swal.fire({
-      icon: 'error',
-      title: 'Invalid Date!',
-      text: 'Please select your Date of Birth.',
-      confirmButtonColor: '#e53935'
-    });
-    return;
-  }
-
-  const year = parseInt(dob.split('-')[0]);
-  if (year < 1960 || year > 2015) {
-    Swal.fire({
-      icon: 'error',
-      title: 'Age Is Not Acceptable!',
-      text: 'Birth year must be between 1960 and 2015.',
-      confirmButtonColor: '#e53935'
-    });
-    return;
-  }
-
-  // ✅ Beautiful success sequence
-  await Swal.fire({
+  // ✅ একটিমাত্র সুন্দর Alert
+  Swal.fire({
     icon: 'success',
-    title: 'Username: ' + username,
-    showConfirmButton: false,
-    timer: 1300
-  });
-
-  await Swal.fire({
-    icon: 'success',
-    title: 'Password: ' + pwd,
-    showConfirmButton: false,
-    timer: 1300
-  });
-
-  await Swal.fire({
-    icon: 'info',
-    title: `Dear ${username},`,
-    text: 'We Have Saved Your Information. The Chat System Will Be Launched Very Soon!',
+    title: '<b>Your Registration has completed!</b>',
+    html: `
+      <div style="font-size:15px; text-align:left; line-height:1.6; margin-top:8px;">
+        <b>Username:</b> ${username}<br>
+        <b>Password:</b> ${password}<br><br>
+        Dear ${username}, We Have Saved Your Information.<br>
+        The Chat System Will Be Launched Very Soon!
+      </div>
+    `,
+    confirmButtonText: 'OK',
     confirmButtonColor: '#4caf50',
-    timer: 2500,
-    showConfirmButton: false
-  });
-
-  // redirect
-  setTimeout(() => {
+    allowOutsideClick: false,
+    timer: 20000, // 20 seconds
+    timerProgressBar: true
+  }).then(() => {
     window.location.href = 'index.html';
-  }, 2700);
+  });
 
   this.reset();
 });
