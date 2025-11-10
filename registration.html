@@ -140,7 +140,7 @@ button:hover {
 
   <ul class="rules">
     <li>Allowed characters: a-z, 0-9, - _</li>
-    <li>Minimum 8 characters for Username & Password.</li>
+    <li>Minimum 5 characters for Username & Password.</li>
     <li>Username must start with a letter, not symbols or numbers.</li>
     <li>No capital letters in username.</li>
     <li>Other info helps recover your account.</li>
@@ -170,7 +170,8 @@ button:hover {
     <div>
       <label>Gender:</label>
       <select required>
-        <option value="">Male</option>        
+        <option value="">Select</option>
+        <option>Male</option>
         <option>Female</option>
         <option>Other</option>
       </select>
@@ -225,7 +226,7 @@ document.getElementById('regForm').addEventListener('submit', function(e){
         The Chat System Will Be Launched Very Soon!
       </div>
     `,
-    confirmButtonText: 'OK',
+    confirmButtonText: 'Submit',
     confirmButtonColor: '#4caf50',
     allowOutsideClick: false,
     timer: 20000, // 20 seconds
