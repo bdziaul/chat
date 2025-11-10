@@ -181,11 +181,9 @@ button:hover {
 
   <form id="regForm">
     <div>
-      <div class="tooltip-wrap">
-  <label>Username:</label>
-  <input type="text" id="username" placeholder="Enter your Name" required pattern="^[a-z][a-z0-9-_]{4,}$" minlength="4">
-  <span class="tooltip">Please Give Your Name At Last 4 Disits</span>
-</div>
+      <input type="text" id="username" placeholder="Enter your Name" 
+       required pattern="^[a-z][a-z0-9-_]{4,}$" minlength="4"
+       autocomplete="new-username">
 
     <div>
       <label>Password:</label>
