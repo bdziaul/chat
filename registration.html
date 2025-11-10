@@ -233,6 +233,16 @@ document.getElementById('regForm').addEventListener('submit', function(e){
   const dob = document.getElementById('date').value;
   const email = document.getElementById('email').value.trim();
 
+  // Username length check
+if (username.length < 4) {
+  Swal.fire({
+    icon: 'warning',
+    title: 'Please Give Your Name At Last 4 Disits!',
+    confirmButtonColor: '#fbc02d'
+  });
+  return;
+}
+  
   // Password match
   if (password !== confirm) {
     Swal.fire({
