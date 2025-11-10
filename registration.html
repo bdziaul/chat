@@ -9,7 +9,6 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-<script src="https://kit.fontawesome.com/a2d9a64d5f.js" crossorigin="anonymous"></script>
 
 <style>
 body {
@@ -80,22 +79,6 @@ label {
   font-size: 14px;
   margin-bottom: 3px;
   display: block;
-}
-.input-group {
-  position: relative;
-}
-.input-group i {
-  position: absolute;
-  right: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-  cursor: pointer;
-  color: #555;
-  transition: 0.3s;
-}
-.input-group i:hover {
-  color: #4caf50;
-  transform: translateY(-50%) scale(1.2);
 }
 input, select {
   width: 100%;
@@ -169,16 +152,14 @@ button:hover {
       <input type="text" id="username" required pattern="^[a-z][a-z0-9-_]{7,}$">
     </div>
 
-    <div class="input-group">
+    <div>
       <label>Password:</label>
       <input type="password" id="password" required minlength="5">
-      <i class="fas fa-eye togglePassword" data-target="password"></i>
     </div>
 
-    <div class="input-group">
+    <div>
       <label>Confirm Password:</label>
       <input type="password" id="confirm_password" required minlength="5">
-      <i class="fas fa-eye togglePassword" data-target="confirm_password"></i>
     </div>
 
     <div>
@@ -216,22 +197,6 @@ flatpickr("#birthday", {
   allowInput: true
 });
 
-// 👁 Hide/Unhide Password Functionality
-document.querySelectorAll('.togglePassword').forEach(icon => {
-  icon.addEventListener('click', function() {
-    const target = document.getElementById(this.dataset.target);
-    if (target.type === "password") {
-      target.type = "text";
-      this.classList.remove("fa-eye");
-      this.classList.add("fa-eye-slash");
-    } else {
-      target.type = "password";
-      this.classList.remove("fa-eye-slash");
-      this.classList.add("fa-eye");
-    }
-  });
-});
-
 document.getElementById('regForm').addEventListener('submit', function(e){
   e.preventDefault();
 
@@ -249,7 +214,7 @@ document.getElementById('regForm').addEventListener('submit', function(e){
     return;
   }
 
-  // ✅ Single beautiful alert with auto redirect
+  // ✅ একটিমাত্র সুন্দর Alert
   Swal.fire({
     icon: 'success',
     title: '<b>Your Registration has completed!</b>',
@@ -264,7 +229,7 @@ document.getElementById('regForm').addEventListener('submit', function(e){
     confirmButtonText: 'OK',
     confirmButtonColor: '#4caf50',
     allowOutsideClick: false,
-    timer: 20000,
+    timer: 20000, // 20 seconds
     timerProgressBar: true
   }).then(() => {
     window.location.href = 'index.html';
