@@ -168,12 +168,12 @@ button:hover {
   <form id="loginForm">
     <div class="input-group">
       <ion-icon name="person-outline"></ion-icon>
-      <input type="email" placeholder="Enter Email" id="email" required>
+      <input type="text" placeholder="Enter Username" name="username" autocomplete="off" required>
     </div>
 
     <div class="input-group password-group">
       <ion-icon name="lock-closed-outline"></ion-icon>
-      <input type="password" placeholder="Enter Password" id="password" required>
+      <input type="password" placeholder="Enter Password" id="password" name="password" autocomplete="current-password" required>
       <span class="toggle-password" onclick="togglePassword()">👁️</span>
     </div>
 
@@ -186,41 +186,19 @@ button:hover {
   </form>
 
   <div class="links">
+  <a href="https://www.facebook.com/Ziaulz/" target="_blank" style="color:#fff;">Forgotten password?</a>
     <a href="registration.html"><b>Create new account</b></a>
-    <a href="https://www.facebook.com/Ziaulz/" target="_blank" style="color:#fff;">Forgotten password?</a>
   </div>
 </div>
 
-<!-- Firebase SDK -->
-<script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-auth-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-database-compat.js"></script>
-
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
 <script>
-// Firebase config
-const firebaseConfig = {
-  apiKey: "AIzaSyDjt8sx0NSrSju7JnGq36RERZNY8uamScc",
-  authDomain: "udpnchat.firebaseapp.com",
-  databaseURL: "https://udpnchat-default-rtdb.firebaseio.com",
-  projectId: "udpnchat",
-  storageBucket: "udpnchat.firebasestorage.app",
-  messagingSenderId: "1006055561503",
-  appId: "1:1006055561503:web:b543dc4ac8f2e6cbf1b82a",
-  measurementId: "G-W6FGT46QWT"
-};
-firebase.initializeApp(firebaseConfig);
-const auth = firebase.auth();
-const database = firebase.database();
-
-// Password toggle
-function togglePassword(){
-  const input = document.getElementById('password');
-  input.type = input.type === 'password' ? 'text' : 'password';
+// পাসওয়ার্ড দেখানো/লুকানো
+function togglePassword() {
+  const passwordInput = document.getElementById("password");
+  passwordInput.type = passwordInput.type === "password" ? "text" : "password";
 }
 
-// Live clock
+// লাইভ ঘড়ি
 function updateClock() {
   const now = new Date();
   let h = now.getHours();
@@ -233,7 +211,7 @@ function updateClock() {
 setInterval(updateClock,1000);
 updateClock();
 
-// Online visitors demo
+// অনলাইন ভিজিটর সংখ্যা (ডেমো)
 function updateVisitors() {
   const visitors = Math.floor(Math.random()*50)+1;
   document.getElementById('visitors').textContent = 'Online Visitors: '+visitors;
@@ -241,35 +219,22 @@ function updateVisitors() {
 setInterval(updateVisitors,4000);
 updateVisitors();
 
-// Firebase Login
+// ফর্ম সাবমিট (ডেমো)
 document.getElementById('loginForm').addEventListener('submit', function(e){
   e.preventDefault();
-  const email = document.getElementById('email').value.trim();
-  const password = document.getElementById('password').value.trim();
-
-  auth.signInWithEmailAndPassword(email,password)
-    .then(userCredential=>{
-      const user = userCredential.user;
-      Swal.fire({
-        icon:'success',
-        title:'Login Successful!',
-        html:`Welcome ${user.email}`,
-        timer:1500,
-        showConfirmButton:false
-      }).then(()=>{
-        // Redirect to dashboard or chat page
-        window.location.href = 'dashboard.html';
-      });
-    })
-    .catch(error=>{
-      Swal.fire({
-        icon:'error',
-        title:'Login Failed!',
-        text:error.message
-      });
-    });
+  alert("Login Successful (Demo)");
 });
 </script>
 
 </body>
 </html>
+
+<!-- Firebase Core -->
+<script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+
+<!-- Firebase Authentication -->
+<script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-auth-compat.js"></script>
+
+<!-- Firebase Realtime Database -->
+<script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-database-compat.js"></script>
+
