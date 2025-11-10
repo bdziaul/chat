@@ -1,303 +1,160 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Registration Portal</title>
-<link rel="icon" type="image/png" href="https://raw.githubusercontent.com/bdziaul/Login.php/main/login-logo.png">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registration Portal</title>
+  <link href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.2));
+      background-image: url('https://raw.githubusercontent.com/bdziaul/Login.php/main/login-logo.png');
+      background-repeat: no-repeat;
+      background-position: center top 30px;
+      background-size: 100px;
+      min-height: 100vh;
+      backdrop-filter: blur(10px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
 
-<style>
-/* ----- আগের CSS অপরিবর্তিত ----- */
-body {
-  font-family: 'Poppins', sans-serif;
-  background: url('bg.jpg') no-repeat center center fixed;
-  background-size: cover;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  min-height: 100vh;
-  padding-top: 15px;
-}
-.container {
-  width: 800px;
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(15px);
-  border-radius: 15px;
-  border: 1px solid rgba(255,255,255,0.3);
-  box-shadow: 0 8px 30px rgba(0,0,0,0.2);
-  padding: 30px 50px;
-  color: #fff;
-}
-h2 {
-  text-align: center;
-  margin-bottom: 10px;
-  text-shadow: 0 0 6px rgba(0,0,0,0.4);
-}
-p {
-  text-align: center;
-  font-size: 15px;
-  margin-bottom: 20px;
-}
-p a {
-  display: inline-block;
-  background: rgba(76,175,80,0.9);
-  color: #fff;
-  padding: 6px 14px;
-  border-radius: 6px;
-  font-weight: 600;
-  text-decoration: none;
-  transition: 0.3s ease;
-  box-shadow: 0 0 0 rgba(76,175,80,0);
-}
-p a:hover {
-  background: rgba(76,175,80,1);
-  box-shadow: 0 0 15px rgba(76,175,80,0.8);
-  transform: scale(1.05);
-}
-.rules {
-  background: rgba(255,255,255,0.1);
-  border-radius: 8px;
-  padding: 15px 20px;
-  margin: 20px 0;
-  border: 1px solid rgba(255,255,255,0.2);
-}
-.rules li {
-  margin: 6px 0;
-  font-size: 14px;
-}
-form {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 15px 30px;
-}
-label {
-  font-weight: 600;
-  font-size: 14px;
-  margin-bottom: 3px;
-  display: block;
-}
-input, select {
-  width: 100%;
-  padding: 8px;
-  border: 1px solid rgba(0,0,0,0.2);
-  border-radius: 8px;
-  font-size: 14px;
-  background: #ffffff;
-  color: #000;
-  transition: 0.3s ease;
-}
-input:focus, select:focus {
-  outline: none;
-  border-color: #4caf50;
-  box-shadow: 0 0 8px rgba(76,175,80,0.6);
-}
-input::placeholder {
-  color: rgba(0,0,0,0.5);
-  font-style: italic;
-}
-button {
-  grid-column: span 2;
-  background: rgba(76,175,80,0.9);
-  color: #fff;
-  border: none;
-  padding: 12px;
-  font-size: 16px;
-  border-radius: 8px;
-  cursor: pointer;
-  margin-top: 10px;
-  transition: all 0.3s ease;
-  box-shadow: 0 0 0 rgba(76,175,80,0);
-}
-button:hover {
-  background: rgba(76,175,80,1);
-  box-shadow: 0 0 15px rgba(76,175,80,0.8);
-  transform: scale(1.03);
-}
-.footer {
-  text-align: center;
-  margin-top: 15px;
-  font-size: 14px;
-}
-.footer a {
-  display: inline-block;
-  background: rgba(76,175,80,0.9);
-  color: #fff;
-  padding: 6px 14px;
-  border-radius: 6px;
-  font-weight: 600;
-  text-decoration: none;
-  transition: 0.3s ease;
-  box-shadow: 0 0 0 rgba(76,175,80,0);
-}
-.footer a:hover {
-  background: rgba(76,175,80,1);
-  box-shadow: 0 0 15px rgba(76,175,80,0.8);
-  transform: scale(1.05);
-}
-@media(max-width:850px){
-  .container{width:90%;}
-  form{grid-template-columns: 1fr;}
-}
-</style>
+    .container {
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 20px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+      padding: 40px;
+      width: 360px;
+      color: #fff;
+      text-align: center;
+      backdrop-filter: blur(15px);
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      font-size: 24px;
+      color: #fff;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border: none;
+      border-radius: 8px;
+      outline: none;
+      font-size: 14px;
+    }
+
+    input[type="submit"] {
+      background: #00b894;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    input[type="submit"]:hover {
+      background: #019870;
+    }
+
+    p {
+      font-size: 12px;
+      margin-top: 10px;
+      color: #eee;
+    }
+  </style>
 </head>
 <body>
 
-<div class="container">
-  <h2>Registration Center</h2>
-  <p><b>Already have an account?</b> <a href="index.html">Login Here</a></p>
-
-  <ul class="rules">
-    <li>Allowed characters: a-z, 0-9, - _</li>
-    <li>Minimum 8 characters for Username & Password.</li>
-    <li>Username must start with a letter, not symbols or numbers.</li>
-    <li>No capital letters in username.</li>
-    <li>Other info helps recover your account.</li>
-  </ul>
-
-  <form id="regForm">
-    <div>
-      <label>Username:</label>
-      <input type="text" id="username" name="username" required pattern="^[a-z][a-z0-9-_]{7,}$" title="Start with letter, 8+ chars, no capitals">
-    </div>
-
-    <div>
-      <label>Password:</label>
-      <input type="password" id="password" required minlength="5">
-    </div>
-
-    <div>
-      <label>Confirm Password:</label>
-      <input type="password" id="confirm_password" required minlength="5">
-    </div>
-
-    <div>
-      <label>Date Of Birth:</label>
-      <input type="date" id="birthday" placeholder="DD-MMM-YYYY" required>
-    </div>
-
-    <div>
-      <label>Gender:</label>
-      <select required>
-        <option value="">Select</option>
-        <option>Male</option>
-        <option>Female</option>
-        <option>Other</option>
-      </select>
-    </div>
-
-    <div>
-      <label>Verify Code: <b>Ziaul</b></label>
-      <input type="text" placeholder="Enter Code" required pattern="Ziaul" title="Enter exactly 'Ziaul'">
-    </div>
-
-    <button type="submit">Register</button>
-  </form>
-
-  <div class="footer">
-    🌐 <a href="index.html">Home</a>
+  <div class="container">
+    <h2>Registration Center</h2>
+    <form id="registerForm">
+      <input type="text" id="username" placeholder="Username" required>
+      <input type="password" id="password" placeholder="Password" required>
+      <input type="password" id="confirmPassword" placeholder="Confirm Password" required>
+      <input type="text" id="dob" placeholder="Date of Birth" required>
+      <input type="email" id="email" placeholder="Email" required>
+      <input type="submit" value="Register">
+      <p><b>Please <a href="index.html">Login Here</a> if you already have an account!</b></p>
+      <br>
+      <p>
+        * Allowed characters in username and password are a-z, 0-9, and -_<br>
+        * Username and Password must contain at least 8 characters.<br>
+        * Username must not begin with any symbols or numbers.<br>
+        * Username must not contain capitals.<br>
+        * Other informations will help you to recover your account.
+      </p>
+    </form>
   </div>
-</div>
 
-<script>
-// flatpickr setup
-flatpickr("#birthday", {
-  dateFormat: "Y-m-d",
-  maxDate: "today",
-  allowInput: true
-});
-
-// validation and submit handler
-document.getElementById('regForm').addEventListener('submit', async function(e){
-  e.preventDefault();
-
-  const username = document.getElementById('username').value.trim();
-  const usernamePattern = /^[a-z][a-z0-9-_]{7,}$/;
-  const pwd = document.getElementById('password').value;
-  const cpwd = document.getElementById('confirm_password').value;
-  const dob = document.getElementById('birthday').value;
-
-  // Password match check
-  if (pwd !== cpwd) {
-    Swal.fire({
-      icon: 'error',
-      title: 'Password Doesn’t Match!',
-      text: 'Please check your Password and Confirm Password.',
-      confirmButtonColor: '#e53935'
+  <script>
+    // Flatpickr setup
+    flatpickr("#dob", {
+      dateFormat: "Y-m-d",
+      maxDate: "2015-12-31",
+      minDate: "1960-01-01"
     });
-    return;
-  }
 
-  // Username validation
-  if (!usernamePattern.test(username)) {
-    Swal.fire({
-      icon: 'error',
-      title: 'Username Is Not Valid!',
-      text: 'Please follow the username rules properly.',
-      confirmButtonColor: '#e53935'
+    const form = document.getElementById('registerForm');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const username = document.getElementById('username').value.trim();
+      const password = document.getElementById('password').value;
+      const confirmPassword = document.getElementById('confirmPassword').value;
+      const dob = document.getElementById('dob').value;
+
+      // Username validation
+      const usernamePattern = /^[a-z][a-z0-9-_]{7,}$/;
+      if (!usernamePattern.test(username)) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Username Is Not Valid!',
+          text: 'Use only lowercase letters, numbers, - or _, minimum 8 characters.'
+        });
+        return;
+      }
+
+      // Password match check
+      if (password !== confirmPassword) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Password Doesn’t Match!',
+          text: 'Please make sure both passwords are same.'
+        });
+        return;
+      }
+
+      // Date validation (1960–2015)
+      const birthYear = parseInt(dob.substring(0, 4));
+      if (birthYear < 1960 || birthYear > 2015) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Age Is Not Acceptable!',
+          text: 'Date of Birth must be between 1960 and 2015.'
+        });
+        return;
+      }
+
+      // Success message (username, password, and info)
+      Swal.fire({
+        title: `<b>Username:</b> ${username}<br><b>Password:</b> ${password}<br><br>Dear ${username}, We Have Saved Your Information,<br>The Chat System Will Be Launched Very Soon!`,
+        icon: 'success',
+        showConfirmButton: true,
+        confirmButtonText: 'OK',
+        timer: 20000,
+        timerProgressBar: true,
+        willClose: () => {
+          window.location.href = "index.html";
+        }
+      });
     });
-    return;
-  }
-
-  // DOB validation (1960 - 2015)
-  if (!dob) {
-    Swal.fire({
-      icon: 'error',
-      title: 'Invalid Date!',
-      text: 'Please select your Date of Birth.',
-      confirmButtonColor: '#e53935'
-    });
-    return;
-  }
-
-  const year = parseInt(dob.split('-')[0]);
-  if (year < 1960 || year > 2015) {
-    Swal.fire({
-      icon: 'error',
-      title: 'Age Is Not Acceptable!',
-      text: 'Birth year must be between 1960 and 2015.',
-      confirmButtonColor: '#e53935'
-    });
-    return;
-  }
-
-  // ✅ Beautiful success sequence
-  await Swal.fire({
-    icon: 'success',
-    title: 'Username: ' + username,
-    showConfirmButton: false,
-    timer: 1300
-  });
-
-  await Swal.fire({
-    icon: 'success',
-    title: 'Password: ' + pwd,
-    showConfirmButton: false,
-    timer: 1300
-  });
-
-  await Swal.fire({
-    icon: 'info',
-    title: `Dear ${username},`,
-    text: 'We Have Saved Your Information. The Chat System Will Be Launched Very Soon!',
-    confirmButtonColor: '#4caf50',
-    timer: 2500,
-    showConfirmButton: false
-  });
-
-  // redirect
-  setTimeout(() => {
-    window.location.href = 'index.html';
-  }, 2700);
-
-  this.reset();
-});
-</script>
+  </script>
 
 </body>
 </html>
