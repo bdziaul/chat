@@ -176,8 +176,8 @@ button:hover {
     </div>
 
     <div>
-      <label>Verify Code: <b>Ziaul</b></label>
-      <input type="text" placeholder="Enter Code" required pattern="Ziaul" title="Enter exactly 'Ziaul'">
+      <label>Your Mail:</label>
+      <input type="email" id="email" placeholder="Enter your email" required>
     </div>
 
     <button type="submit">Register</button>
@@ -196,11 +196,36 @@ document.getElementById('regForm').addEventListener('submit', function(e){
   const password = document.getElementById('password').value.trim();
   const confirm = document.getElementById('confirm_password').value.trim();
   const dob = document.getElementById('date').value;
+  const email = document.getElementById('email').value.trim();
 
+  // Password match check
   if (password !== confirm) {
     Swal.fire({
       icon: 'error',
       title: 'Password Doesn’t Match!',
+      confirmButtonColor: '#e53935'
+    });
+    return;
+  }
+
+  // Date of Birth validation
+  if(dob){
+    const year = new Date(dob).getFullYear();
+    if(year < 1960 || year > 2015){
+      Swal.fire({
+        icon: 'error',
+        title: 'Age Is Not Acceptable!',
+        confirmButtonColor: '#e53935'
+      });
+      return;
+    }
+  }
+
+  // Email validation (HTML type=email ensures format, we can check non-empty)
+  if(!email){
+    Swal.fire({
+      icon: 'error',
+      title: 'Give It The Correct Email!',
       confirmButtonColor: '#e53935'
     });
     return;
@@ -213,7 +238,8 @@ document.getElementById('regForm').addEventListener('submit', function(e){
       <div style="font-size:15px; text-align:left; line-height:1.6; margin-top:8px;">
         <b>Username:</b> ${username}<br>
         <b>Password:</b> ${password}<br>
-        <b>Date of Birth:</b> ${dob}<br><br>
+        <b>Date of Birth:</b> ${dob}<br>
+        <b>Email:</b> ${email}<br><br>
         Dear ${username}, We Have Saved Your Information.<br>
         The Chat System Will Be Launched Very Soon!
       </div>
