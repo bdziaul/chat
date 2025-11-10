@@ -30,7 +30,7 @@ body {
   box-shadow: 0 8px 30px rgba(0,0,0,0.2);
   padding: 20px 50px;
   color: #fff;
-  margin-top: 8px; /* Container উপরে তোলা */
+  margin-top: 8px;
 }
 h2 {
   text-align: center;
@@ -59,14 +59,34 @@ p a:hover {
 }
 .rules {
   background: rgba(255,255,255,0.1);
-  border-radius: 8px;
-  padding: 15px 20px;
+  border-radius: 12px;
+  padding: 20px;
   margin: 20px 0;
-  border: 1px solid rgba(255,255,255,0.2);
+  border: 1px solid rgba(255,255,255,0.3);
+  list-style: none;
 }
 .rules li {
-  margin: 6px 0;
-  font-size: 14px;
+  position: relative;
+  padding-left: 30px;
+  margin: 10px 0;
+  font-size: 15px;
+  line-height: 1.5;
+  transition: 0.3s ease;
+}
+.rules li::before {
+  content: "ℹ️";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #4caf50;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 1.2;
+}
+.rules li:hover {
+  background: rgba(76,175,80,0.1);
+  border-radius: 8px;
+  padding-left: 28px;
 }
 form {
   display: grid;
@@ -138,66 +158,32 @@ button:hover {
   <p><b>Already have an account?</b> <a href="index.html">Login Here</a></p>
 
   <ul class="rules">
-  <li>Allowed characters: a-z, 0-9, - _</li>
-  <li>Minimum 5 characters for Username & Password.</li>
-  <li>Username must start with a letter, not symbols or numbers.</li>
-  <li>No capital letters in username.</li>
-  <li>Other info helps recover your account.</li>
-</ul>
-
-<style>
-.rules {
-  background: rgba(255,255,255,0.1);
-  border-radius: 12px;
-  padding: 20px;
-  margin: 20px 0;
-  border: 1px solid rgba(255,255,255,0.3);
-  list-style: none;
-}
-.rules li {
-  position: relative;
-  padding-left: 30px;
-  margin: 10px 0;
-  font-size: 15px;
-  line-height: 1.5;
-  transition: 0.3s ease;
-}
-.rules li::before {
-  content: "ℹ️"; /* Info icon */
-  position: absolute;
-  left: 0;
-  top: 0;
-  color: #4caf50;
-  font-weight: bold;
-  font-size: 18px;
-  line-height: 1.2;
-}
-.rules li:hover {
-  background: rgba(76,175,80,0.1);
-  border-radius: 8px;
-  padding-left: 28px;
-}
-</style>
+    <li>Allowed characters: a-z, 0-9, - _</li>
+    <li>Minimum 5 characters for Username & Password.</li>
+    <li>Username must start with a letter, not symbols or numbers.</li>
+    <li>No capital letters in username.</li>
+    <li>Other info helps recover your account.</li>
+  </ul>
 
   <form id="regForm">
     <div>
       <label>Username:</label>
-      <input type="text" id="username" placeholder="Enter your Name" required pattern="^[a-z][a-z0-9-_]{4,}$" minlength="4">
+      <input type="text" id="username" placeholder="Enter your Name" required pattern="^[a-z][a-z0-9-_]{4,}$" minlength="4" autocomplete="off">
     </div>
 
     <div>
       <label>Password:</label>
-      <input type="password" id="password" placeholder="Enter your Password" required minlength="5">
+      <input type="password" id="password" placeholder="Enter your Password" required minlength="5" autocomplete="new-password">
     </div>
 
     <div>
       <label>Confirm Password:</label>
-      <input type="password" id="confirm_password" placeholder="Re-Enter Password" required minlength="5">
+      <input type="password" id="confirm_password" placeholder="Re-Enter Password" required minlength="5" autocomplete="new-password">
     </div>
 
     <div>
       <label>Date Of Birth:</label>
-      <input type="date" id="date" required>
+      <input type="date" id="dob" required>
     </div>
 
     <div>
@@ -212,7 +198,7 @@ button:hover {
 
     <div>
       <label>Your Mail:</label>
-      <input type="email" id="email" placeholder="Enter your email" required autocomplete="off">
+      <input type="email" id="email" placeholder="Enter your email" required>
     </div>
 
     <button type="submit">Register</button>
@@ -230,19 +216,19 @@ document.getElementById('regForm').addEventListener('submit', function(e){
   const username = document.getElementById('username').value.trim();
   const password = document.getElementById('password').value.trim();
   const confirm = document.getElementById('confirm_password').value.trim();
-  const dob = document.getElementById('date').value;
+  const dob = document.getElementById('dob').value;
   const email = document.getElementById('email').value.trim();
 
-// Username length check
-if (username.length < 4) {
-  Swal.fire({
-    icon: 'warning',
-    title: 'Please Give Your Name At Last 4 Disits!',
-    confirmButtonColor: '#fbc02d'
-  });
-  return;
-}
-  
+  // Username length check
+  if (username.length < 4) {
+    Swal.fire({
+      icon: 'warning',
+      title: 'Please Give Your Name At Least 4 Characters!',
+      confirmButtonColor: '#fbc02d'
+    });
+    return;
+  }
+
   // Password match
   if (password !== confirm) {
     Swal.fire({
@@ -254,19 +240,17 @@ if (username.length < 4) {
   }
 
   // DOB validation
-  if(dob){
-    const year = new Date(dob).getFullYear();
-    if(year < 1960 || year > 2015){
-      Swal.fire({
-        icon: 'error',
-        title: 'Age Is Not Acceptable!',
-        confirmButtonColor: '#e53935'
-      });
-      return;
-    }
+  const year = new Date(dob).getFullYear();
+  if(year < 1960 || year > 2015){
+    Swal.fire({
+      icon: 'error',
+      title: 'Age Is Not Acceptable!',
+      confirmButtonColor: '#e53935'
+    });
+    return;
   }
 
-  // Email validation (format check)
+  // Email validation
   const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if(!emailPattern.test(email)){
     Swal.fire({
@@ -277,7 +261,10 @@ if (username.length < 4) {
     return;
   }
 
-  // Success
+  // ✅ Save info to localStorage
+  const userInfo = { username, password, email, dob };
+  localStorage.setItem('registeredUser', JSON.stringify(userInfo));
+
   Swal.fire({
     icon: 'success',
     title: '<b>Your Registration has completed!</b>',
@@ -288,7 +275,6 @@ if (username.length < 4) {
         <b>Email:</b> ${email}<br><br>
         Dear ${username}, We Have Saved Your Information.<br>
         The Chat System Will Be Launched Very Soon!<br><br>
-        <div style="text-align:center; margin-top:5px;">
       </div>
     `,
     confirmButtonText: 'Submit',
@@ -303,6 +289,5 @@ if (username.length < 4) {
   this.reset();
 });
 </script>
-
 </body>
 </html>
