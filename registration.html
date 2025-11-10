@@ -7,8 +7,6 @@
 <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/bdziaul/Login.php/main/login-logo.png">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
 <style>
 body {
@@ -149,7 +147,7 @@ button:hover {
   <form id="regForm">
     <div>
       <label>Username:</label>
-      <input type="text" id="username" required pattern="^[a-z][a-z0-9-_]{7,}$">
+      <input type="text" id="username" required pattern="^[a-z][a-z0-9-_]{4,}$">
     </div>
 
     <div>
@@ -164,7 +162,7 @@ button:hover {
 
     <div>
       <label>Date Of Birth:</label>
-      <input type="date" id="birthday" required>
+      <input type="date" id="date" required>
     </div>
 
     <div>
@@ -191,19 +189,13 @@ button:hover {
 </div>
 
 <script>
-flatpickr("#birthday", {
-  dateFormat: "Y-m-d",
-  maxDate: "today",
-  allowInput: true
-});
-
 document.getElementById('regForm').addEventListener('submit', function(e){
   e.preventDefault();
 
   const username = document.getElementById('username').value.trim();
   const password = document.getElementById('password').value.trim();
   const confirm = document.getElementById('confirm_password').value.trim();
-  const dob = document.getElementById('birthday').value;
+  const dob = document.getElementById('date').value;
 
   if (password !== confirm) {
     Swal.fire({
@@ -214,14 +206,14 @@ document.getElementById('regForm').addEventListener('submit', function(e){
     return;
   }
 
-  // ✅ একটিমাত্র সুন্দর Alert
   Swal.fire({
     icon: 'success',
     title: '<b>Your Registration has completed!</b>',
     html: `
       <div style="font-size:15px; text-align:left; line-height:1.6; margin-top:8px;">
         <b>Username:</b> ${username}<br>
-        <b>Password:</b> ${password}<br><br>
+        <b>Password:</b> ${password}<br>
+        <b>Date of Birth:</b> ${dob}<br><br>
         Dear ${username}, We Have Saved Your Information.<br>
         The Chat System Will Be Launched Very Soon!
       </div>
@@ -229,7 +221,7 @@ document.getElementById('regForm').addEventListener('submit', function(e){
     confirmButtonText: 'OK',
     confirmButtonColor: '#4caf50',
     allowOutsideClick: false,
-    timer: 20000, // 20 seconds
+    timer: 20000,
     timerProgressBar: true
   }).then(() => {
     window.location.href = 'index.html';
