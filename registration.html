@@ -7,11 +7,11 @@
 <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/bdziaul/Login.php/main/login-logo.png">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<!-- Flatpickr -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
 <style>
+/* ----- তোমার আগের পুরো CSS অপরিবর্তিত ----- */
 body {
   font-family: 'Poppins', sans-serif;
   background: url('bg.jpg') no-repeat center center fixed;
@@ -24,8 +24,6 @@ body {
   min-height: 100vh;
   padding-top: 15px;
 }
-
-/* Glassmorphism Container */
 .container {
   width: 800px;
   background: rgba(255, 255, 255, 0.15);
@@ -36,8 +34,6 @@ body {
   padding: 30px 50px;
   color: #fff;
 }
-
-/* Heading */
 h2 {
   text-align: center;
   margin-bottom: 10px;
@@ -64,8 +60,6 @@ p a:hover {
   box-shadow: 0 0 15px rgba(76,175,80,0.8);
   transform: scale(1.05);
 }
-
-/* Rules */
 .rules {
   background: rgba(255,255,255,0.1);
   border-radius: 8px;
@@ -77,8 +71,6 @@ p a:hover {
   margin: 6px 0;
   font-size: 14px;
 }
-
-/* Form */
 form {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -90,8 +82,6 @@ label {
   margin-bottom: 3px;
   display: block;
 }
-
-/* Input fields */
 input, select {
   width: 100%;
   padding: 8px;
@@ -107,14 +97,10 @@ input:focus, select:focus {
   border-color: #4caf50;
   box-shadow: 0 0 8px rgba(76,175,80,0.6);
 }
-
-/* Placeholder subtle */
 input::placeholder {
   color: rgba(0,0,0,0.5);
   font-style: italic;
 }
-
-/* Register button */
 button {
   grid-column: span 2;
   background: rgba(76,175,80,0.9);
@@ -133,8 +119,6 @@ button:hover {
   box-shadow: 0 0 15px rgba(76,175,80,0.8);
   transform: scale(1.03);
 }
-
-/* Footer + Home Button */
 .footer {
   text-align: center;
   margin-top: 15px;
@@ -156,8 +140,6 @@ button:hover {
   box-shadow: 0 0 15px rgba(76,175,80,0.8);
   transform: scale(1.05);
 }
-
-/* Responsive */
 @media(max-width:850px){
   .container{width:90%;}
   form{grid-template-columns: 1fr;}
@@ -181,7 +163,7 @@ button:hover {
   <form id="regForm">
     <div>
       <label>Username:</label>
-      <input type="text" name="username" required pattern="^[a-z][a-z0-9-_]{7,}$" title="Start with letter, 8+ chars, no capitals">
+      <input type="text" id="username" name="username" required pattern="^[a-z][a-z0-9-_]{7,}$" title="Start with letter, 8+ chars, no capitals">
     </div>
 
     <div>
@@ -196,7 +178,7 @@ button:hover {
 
     <div>
       <label>Date Of Birth:</label>
-      <input type="date" id="date" placeholder="DD-MMM-YYYY" required>
+      <input type="date" id="birthday" placeholder="DD-MMM-YYYY" required>
     </div>
 
     <div>
@@ -223,31 +205,47 @@ button:hover {
 </div>
 
 <script>
-// Initialize flatpickr for Date of Birth
+// flatpickr setup
 flatpickr("#birthday", {
-  dateFormat: "DD-MM-YYYY",
+  dateFormat: "Y-m-d",
   maxDate: "today",
   allowInput: true
 });
 
-// Form submit with validation
+// validation and submit handler
 document.getElementById('regForm').addEventListener('submit', function(e){
   e.preventDefault();
+
+  const username = document.getElementById('username').value.trim();
+  const usernamePattern = /^[a-z][a-z0-9-_]{7,}$/;
   const pwd = document.getElementById('password').value;
   const cpwd = document.getElementById('confirm_password').value;
   const dob = document.getElementById('birthday').value;
 
-  if(pwd !== cpwd){
+  // 1️⃣ Password match check
+  if (pwd !== cpwd) {
     Swal.fire({
       icon: 'error',
-      title: 'Password Mismatch!',
-      text: 'Password and Confirm Password do not match!',
+      title: 'Password Doesn’t Match!',
+      text: 'Please check your Password and Confirm Password.',
       confirmButtonColor: '#e53935'
     });
     return;
   }
 
-  if(!dob){
+  // 2️⃣ Username pattern validation
+  if (!usernamePattern.test(username)) {
+    Swal.fire({
+      icon: 'error',
+      title: 'Username Is Not Valid!',
+      text: 'Please follow the username rules properly.',
+      confirmButtonColor: '#e53935'
+    });
+    return;
+  }
+
+  // 3️⃣ Age range validation (1960 - 2015)
+  if (!dob) {
     Swal.fire({
       icon: 'error',
       title: 'Invalid Date!',
@@ -257,6 +255,18 @@ document.getElementById('regForm').addEventListener('submit', function(e){
     return;
   }
 
+  const year = parseInt(dob.split('-')[0]);
+  if (year < 1960 || year > 2015) {
+    Swal.fire({
+      icon: 'error',
+      title: 'Age Is Not Acceptable!',
+      text: 'Birth year must be between 1960 and 2015.',
+      confirmButtonColor: '#e53935'
+    });
+    return;
+  }
+
+  // ✅ If all valid
   Swal.fire({
     icon: 'success',
     title: 'Registration Successful!',
