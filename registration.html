@@ -11,7 +11,7 @@
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
 <style>
-/* ----- তোমার আগের পুরো CSS অপরিবর্তিত ----- */
+/* ----- আগের CSS অপরিবর্তিত ----- */
 body {
   font-family: 'Poppins', sans-serif;
   background: url('bg.jpg') no-repeat center center fixed;
@@ -213,7 +213,7 @@ flatpickr("#birthday", {
 });
 
 // validation and submit handler
-document.getElementById('regForm').addEventListener('submit', function(e){
+document.getElementById('regForm').addEventListener('submit', async function(e){
   e.preventDefault();
 
   const username = document.getElementById('username').value.trim();
@@ -222,7 +222,7 @@ document.getElementById('regForm').addEventListener('submit', function(e){
   const cpwd = document.getElementById('confirm_password').value;
   const dob = document.getElementById('birthday').value;
 
-  // 1️⃣ Password match check
+  // Password match check
   if (pwd !== cpwd) {
     Swal.fire({
       icon: 'error',
@@ -233,7 +233,7 @@ document.getElementById('regForm').addEventListener('submit', function(e){
     return;
   }
 
-  // 2️⃣ Username pattern validation
+  // Username validation
   if (!usernamePattern.test(username)) {
     Swal.fire({
       icon: 'error',
@@ -244,7 +244,7 @@ document.getElementById('regForm').addEventListener('submit', function(e){
     return;
   }
 
-  // 3️⃣ Age range validation (1960 - 2015)
+  // DOB validation (1960 - 2015)
   if (!dob) {
     Swal.fire({
       icon: 'error',
@@ -266,19 +266,34 @@ document.getElementById('regForm').addEventListener('submit', function(e){
     return;
   }
 
-  // ✅ If all valid
-  Swal.fire({
+  // ✅ Beautiful success sequence
+  await Swal.fire({
     icon: 'success',
-    title: 'Registration Successful!',
-    text: 'Date of Birth: ' + dob + '\nRedirecting to Home...',
+    title: 'Username: ' + username,
+    showConfirmButton: false,
+    timer: 1300
+  });
+
+  await Swal.fire({
+    icon: 'success',
+    title: 'Password: ' + pwd,
+    showConfirmButton: false,
+    timer: 1300
+  });
+
+  await Swal.fire({
+    icon: 'info',
+    title: `Dear ${username},`,
+    text: 'We Have Saved Your Information. The Chat System Will Be Launched Very Soon!',
     confirmButtonColor: '#4caf50',
-    timer: 2000,
+    timer: 2500,
     showConfirmButton: false
   });
 
+  // redirect
   setTimeout(() => {
     window.location.href = 'index.html';
-  }, 2000);
+  }, 2700);
 
   this.reset();
 });
