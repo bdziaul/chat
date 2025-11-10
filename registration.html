@@ -136,59 +136,45 @@ button:hover {
   <h2>Registration Center</h2>
   <p><b>Already have an account?</b> <a href="index.html">Login Here</a></p>
 
-  <!-- Rules Section -->
-<ul class="rules">
-  <li class="rule-allowed">Allowed characters: a-z, 0-9, - _</li>
-  <li class="rule-min">Minimum 5 characters for Username & Password.</li>
-  <li class="rule-start">Username must start with a letter, not symbols or numbers.</li>
-  <li class="rule-capital">No capital letters in username.</li>
-  <li class="rule-info">Other info helps recover your account.</li>
+  <ul class="rules">
+  <li>Allowed characters: a-z, 0-9, - _</li>
+  <li>Minimum 5 characters for Username & Password.</li>
+  <li>Username must start with a letter, not symbols or numbers.</li>
+  <li>No capital letters in username.</li>
+  <li>Other info helps recover your account.</li>
 </ul>
 
 <style>
 .rules {
   background: rgba(255,255,255,0.1);
   border-radius: 12px;
-  padding: 20px 25px;
+  padding: 20px;
   margin: 20px 0;
   border: 1px solid rgba(255,255,255,0.3);
   list-style: none;
 }
 .rules li {
   position: relative;
-  padding-left: 35px;
-  margin: 12px 0;
+  padding-left: 30px;
+  margin: 10px 0;
   font-size: 15px;
   line-height: 1.5;
   transition: 0.3s ease;
-  border-left: 4px solid transparent;
-  border-radius: 6px;
-  padding-top: 5px;
-  padding-bottom: 5px;
 }
-/* Tick icon */
 .rules li::before {
-  content: "✔"; 
+  content: "✔"; /* tick icon, তুমি চাইলে অন্য icon দিতে পারো */
   position: absolute;
-  left: 5px;
+  left: 0;
   top: 0;
-  color: #fff;
+  color: #4caf50;
   font-weight: bold;
-  font-size: 16px;
+  font-size: 18px;
   line-height: 1.2;
 }
-
-/* Individual colors for rules */
-.rule-allowed { border-left-color: #f44336; }   /* red */
-.rule-min { border-left-color: #2196f3; }       /* blue */
-.rule-start { border-left-color: #ff9800; }     /* orange */
-.rule-capital { border-left-color: #9c27b0; }   /* purple */
-.rule-info { border-left-color: #4caf50; }      /* green */
-
-/* Hover effect */
 .rules li:hover {
   background: rgba(76,175,80,0.1);
-  padding-left: 33px;
+  border-radius: 8px;
+  padding-left: 28px;
 }
 </style>
 
