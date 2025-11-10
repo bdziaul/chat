@@ -272,14 +272,15 @@ document.getElementById('regForm').addEventListener('submit', function(e){
     icon: 'success',
     title: '<b>Your Registration has completed!</b>',
     html: `
-      <div style="font-size:15px; text-align:left; line-height:1.6; margin-top:8px;">
-        <b>Username:</b> ${username}<br>
-        <b>Password:</b> ${password}<br>
-        <b>Email:</b> ${email}<br><br>
-        Dear ${username}, We Have Saved Your Information.<br>
-        The Chat System Will Be Launched Very Soon!<br><br>
-        <div style="text-align:center; margin-top:5px;">          
-          <div style="margin-top:15px; font-weight:bold; color:#4caf50;">Thank You</div>        
+      <div style="font-size:14px; line-height:1.5; color:#fff; text-align:left; margin-top:5px;">
+        <p><b>Username:</b> ${username}</p>
+        <p><b>Password:</b> ${password}</p>
+        <p><b>Email:</b> ${email}</p>
+        <p>Dear ${username}, We Have Saved Your Information.<br>
+        The Chat System Will Be Launched Very Soon!</p>
+        <p style="text-align:center; font-weight:bold; color:#4caf50; margin-top:10px;">
+          Thank You
+        </p>
       </div>
     `,
     confirmButtonText: 'Submit',
