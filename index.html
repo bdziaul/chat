@@ -2,39 +2,192 @@
 <html lang="bn">
 <head>
 <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Login Portal</title>
-<link rel="icon" href="https://raw.githubusercontent.com/bdziaul/Login.php/main/login-logo.png">
+<link rel="icon" type="image/png" href="https://raw.githubusercontent.com/bdziaul/Login.php/main/login-logo.png">
 
 <style>
-body { min-height:100vh; display:flex; justify-content:center; align-items:center; background:url('bg.jpg') no-repeat center center/cover; font-family:'Poppins', sans-serif; }
-.login-container { background: rgba(255,255,255,0.15); backdrop-filter: blur(12px); border-radius:15px; border:2px solid rgba(255,255,255,0.2); box-shadow:0 4px 30px rgba(0,0,0,0.2); padding:40px 35px; width:350px; text-align:center; }
-h1 { font-size:2rem; color:#fff; margin-bottom:25px; text-shadow:0 0 6px rgba(0,0,0,0.3); }
-.input-group { position:relative; margin-bottom:20px; }
-.input-group input { width:100%; padding:12px 12px 12px 12px; border-radius:8px; border:none; outline:none; background:rgba(255,255,255,0.85); font-size:15px; }
-button { width:100%; background:#4CAF50; color:#fff; padding:12px; border:none; border-radius:8px; font-size:16px; cursor:pointer; margin-top:10px; }
-button:hover { background:#43A047; }
-.links { margin-top:18px; display:flex; justify-content:space-between; font-size:14px; }
-.links a { color:#C8E6C9; text-decoration:none; font-weight:500; }
-.links a:hover { color:#A5D6A7; }
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+* { margin:0; padding:0; box-sizing:border-box; font-family:'Poppins', sans-serif; }
+
+body {
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background: url('bg.jpg') no-repeat center center/cover;
+}
+
+.login-container {
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(12px);
+  border-radius: 15px;
+  border: 2px solid rgba(255,255,255,0.2);
+  box-shadow: 0 4px 30px rgba(0,0,0,0.2);
+  padding: 40px 35px;
+  width: 350px;
+  text-align: center;
+  animation: fadeIn 1.2s ease;
+}
+
+@keyframes fadeIn { from {opacity:0; transform:translateY(-15px);} to {opacity:1; transform:translateY(0);} }
+
+.status-bar {
+  display:flex;
+  justify-content: space-between;
+  color: #fff;
+  margin-bottom: 20px;
+  font-size: 14px;
+  font-weight:500;
+  text-shadow: 0 0 4px rgba(0,0,0,0.4);
+}
+
+h1 {
+  font-size: 2rem;
+  color: #fff;
+  margin-bottom: 25px;
+  text-shadow:0 0 6px rgba(0,0,0,0.3);
+}
+
+.input-group { position: relative; margin-bottom: 20px; }
+
+.input-group ion-icon {
+  position: absolute;
+  left:10px;
+  top:50%;
+  transform:translateY(-50%);
+  color:#4CAF50;
+  font-size:20px;
+}
+
+.input-group input {
+  width:100%;
+  padding:12px 12px 12px 38px;
+  border-radius:8px;
+  border:none;
+  outline:none;
+  background: rgba(255,255,255,0.85);
+  font-size:15px;
+  transition:0.3s;
+}
+
+.input-group input:focus { 
+  background:#fff; 
+  box-shadow:0 0 0 2px #4CAF50; 
+}
+
+.password-group { position: relative; }
+.toggle-password {
+  position:absolute;
+  right:10px;
+  top:50%;
+  transform:translateY(-50%);
+  cursor:pointer;
+  font-size:18px;
+  color:#444;
+  user-select:none;
+  transition:0.2s;
+}
+.toggle-password:hover { color:#4CAF50; }
+
+.remember {
+  display:flex;
+  align-items:center;
+  justify-content:flex-start;
+  margin-bottom:18px;
+  font-size:14px;
+  color:#fff;
+}
+.remember input { margin-right:6px; }
+
+button {
+  width:100%;
+  background:#4CAF50;
+  color:#fff;
+  padding:12px;
+  border:none;
+  border-radius:8px;
+  font-size:16px;
+  font-weight:600;
+  cursor:pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 0 rgba(76,175,80,0);
+}
+
+button:hover {
+  background:#43A047;
+  box-shadow: 0 0 15px rgba(76,175,80,0.8);
+  transform: scale(1.05);
+}
+.links {
+  margin-top:18px;
+  display:flex;
+  justify-content:space-between;
+  font-size:14px;
+}
+.links a {
+  color:#C8E6C9;
+  text-decoration:none;
+  font-weight:500;
+  position:relative;
+  transition: all 0.3s ease;
+  display:inline-block;
+}
+
+.links a:hover {
+  color:#A5D6A7;
+  transform: scale(1.05);
+  text-shadow: 0 0 10px rgba(76,175,80,0.8);
+}
+
+@media (max-width:480px) {
+  .login-container { width:90%; padding:30px 25px; }
+  h1 { font-size:1.6rem; }
+  .input-group input { padding:11px 11px 11px 36px; font-size:14px; }
+  button { font-size:15px; padding:11px; }
+  .links { flex-direction:column; gap:8px; text-align:center; }
+  .status-bar { flex-direction:column; gap:6px; }
+}
 </style>
+
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
 </head>
 <body>
 
 <div class="login-container">
+
+  <div class="status-bar">
+    <div id="clock">00:00:00 AM</div>
+    <div id="visitors">Online Visitors: 0</div>
+  </div>
+
   <h1>Login</h1>
   <form id="loginForm">
     <div class="input-group">
-      <input type="email" placeholder="Enter Email" name="email" required>
+      <ion-icon name="person-outline"></ion-icon>
+      <input type="email" placeholder="Enter Email" id="email" required>
     </div>
-    <div class="input-group">
-      <input type="password" placeholder="Enter Password" id="password" name="password" required>
+
+    <div class="input-group password-group">
+      <ion-icon name="lock-closed-outline"></ion-icon>
+      <input type="password" placeholder="Enter Password" id="password" required>
+      <span class="toggle-password" onclick="togglePassword()">👁️</span>
     </div>
+
+    <div class="remember">
+      <input type="checkbox" id="remember" checked>
+      <label for="remember">Remember me</label>
+    </div>
+
     <button type="submit">Sign In</button>
   </form>
+
   <div class="links">
-    <a href="registration.html">Create new account</a>
+    <a href="registration.html"><b>Create new account</b></a>
+    <a href="https://www.facebook.com/Ziaulz/" target="_blank" style="color:#fff;">Forgotten password?</a>
   </div>
 </div>
 
@@ -46,6 +199,7 @@ button:hover { background:#43A047; }
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script>
+// Firebase config
 const firebaseConfig = {
   apiKey: "AIzaSyDjt8sx0NSrSju7JnGq36RERZNY8uamScc",
   authDomain: "udpnchat.firebaseapp.com",
@@ -60,19 +214,59 @@ firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 const database = firebase.database();
 
-// Login Function
+// Password toggle
+function togglePassword(){
+  const input = document.getElementById('password');
+  input.type = input.type === 'password' ? 'text' : 'password';
+}
+
+// Live clock
+function updateClock() {
+  const now = new Date();
+  let h = now.getHours();
+  const m = now.getMinutes().toString().padStart(2,'0');
+  const s = now.getSeconds().toString().padStart(2,'0');
+  const ampm = h>=12?'PM':'AM';
+  h = h%12 || 12;
+  document.getElementById('clock').textContent = `${h}:${m}:${s} ${ampm}`;
+}
+setInterval(updateClock,1000);
+updateClock();
+
+// Online visitors demo
+function updateVisitors() {
+  const visitors = Math.floor(Math.random()*50)+1;
+  document.getElementById('visitors').textContent = 'Online Visitors: '+visitors;
+}
+setInterval(updateVisitors,4000);
+updateVisitors();
+
+// Firebase Login
 document.getElementById('loginForm').addEventListener('submit', function(e){
   e.preventDefault();
-  const email = this.email.value.trim();
-  const password = this.password.value.trim();
+  const email = document.getElementById('email').value.trim();
+  const password = document.getElementById('password').value.trim();
 
-  auth.signInWithEmailAndPassword(email, password)
-    .then(userCredential => {
-      Swal.fire({icon:'success', title:'Login Successful!', timer:1500, showConfirmButton:false});
-      setTimeout(()=>{ window.location.href="dashboard.html"; }, 1600);
+  auth.signInWithEmailAndPassword(email,password)
+    .then(userCredential=>{
+      const user = userCredential.user;
+      Swal.fire({
+        icon:'success',
+        title:'Login Successful!',
+        html:`Welcome ${user.email}`,
+        timer:1500,
+        showConfirmButton:false
+      }).then(()=>{
+        // Redirect to dashboard or chat page
+        window.location.href = 'dashboard.html';
+      });
     })
-    .catch(error => {
-      Swal.fire({icon:'error', title:error.message});
+    .catch(error=>{
+      Swal.fire({
+        icon:'error',
+        title:'Login Failed!',
+        text:error.message
+      });
     });
 });
 </script>
