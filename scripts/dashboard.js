@@ -1,26 +1,18 @@
-// scripts/dashboard.js
-// Check user login status and load user data from Firebase
-
-auth.onAuthStateChanged(user => {
+// Check user login status
+firebase.auth().onAuthStateChanged((user) => {
   if (user) {
-    // User is logged in
-    const userId = user.uid;
-    const userRef = database.ref('users/' + userId);
-
-    userRef.once('value').then(snapshot => {
-      const data = snapshot.val();
-      document.getElementById('welcome').textContent = 
-        `Welcome, ${data.username}! 👋`;
-    });
+    document.getElementById('welcomeText').innerText = `Welcome, ${user.email}! 👋`;
+    document.getElementById('userEmail').innerText = `Your UID: ${user.uid}`;
   } else {
-    // No user logged in → redirect to login page
-    window.location.href = 'index.html';
+    // No user logged in, redirect to login page
+    window.location.href = "index.html";
   }
 });
 
-// Logout function
-function logout() {
-  auth.signOut().then(() => {
-    window.location.href = 'index.html';
+// Logout button
+document.getElementById('logoutBtn').addEventListener('click', () => {
+  firebase.auth().signOut().then(() => {
+    alert("You have been logged out!");
+    window.location.href = "index.html";
   });
-}
+});
