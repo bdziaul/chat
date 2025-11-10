@@ -1,40 +1,59 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dashboard</title>
-<link rel="icon" href="assets/logo.png" type="image/png">
-<link rel="stylesheet" href="styles.css"> <!-- optional -->
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<!-- Firebase SDK -->
-<script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-auth-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-database-compat.js"></script>
-<script src="scripts/firebase.js"></script>
-<script src="scripts/dashboard.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UDPN Chat - Dashboard</title>
+  <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/bdziaul/Login.php/main/login-logo.png">
+
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #4CAF50, #2E7D32);
+      color: #fff;
+      text-align: center;
+      padding-top: 80px;
+    }
+    h1 {
+      font-size: 2em;
+    }
+    #welcome {
+      margin-top: 20px;
+      font-size: 1.5em;
+      font-weight: 500;
+    }
+    button {
+      margin-top: 30px;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 8px;
+      background: #fff;
+      color: #2E7D32;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    button:hover {
+      background: #C8E6C9;
+    }
+  </style>
 </head>
+
 <body>
+  <h1>UDPN Chat Dashboard</h1>
+  <h2 id="welcome">Loading...</h2>
+  <button onclick="logout()">Logout</button>
 
-<div class="dashboard-container">
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-database-compat.js"></script>
 
-  <div class="user-info">
-    <h2>Welcome, <span id="username">User</span></h2>
-    <p>Email: <span id="email"></span></p>
-    <p>Rank: <span id="rank">Newbie</span></p>
-    <p>Points: <span id="points">0</span></p>
-    <button id="logoutBtn">Logout</button>
-  </div>
+  <!-- Firebase Config -->
+  <script src="scripts/firebase.js"></script>
 
-  <div class="chat-box">
-    <div id="chatMessages" class="chat-messages">
-      <!-- Messages will appear here -->
-    </div>
-    <input type="text" id="messageInput" placeholder="Type a message...">
-    <button id="sendBtn">Send</button>
-  </div>
-
-</div>
-
+  <!-- Dashboard Logic -->
+  <script src="scripts/dashboard.js"></script>
 </body>
 </html>
