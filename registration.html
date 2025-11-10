@@ -198,7 +198,7 @@ document.getElementById('regForm').addEventListener('submit', function(e){
   const dob = document.getElementById('date').value;
   const email = document.getElementById('email').value.trim();
 
-  // Password match check
+  // Password match
   if (password !== confirm) {
     Swal.fire({
       icon: 'error',
@@ -208,7 +208,7 @@ document.getElementById('regForm').addEventListener('submit', function(e){
     return;
   }
 
-  // Date of Birth validation
+  // DOB validation
   if(dob){
     const year = new Date(dob).getFullYear();
     if(year < 1960 || year > 2015){
@@ -221,8 +221,9 @@ document.getElementById('regForm').addEventListener('submit', function(e){
     }
   }
 
-  // Email validation (HTML type=email ensures format, we can check non-empty)
-  if(!email){
+  // Email validation (format check)
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if(!emailPattern.test(email)){
     Swal.fire({
       icon: 'error',
       title: 'Give It The Correct Email!',
@@ -231,6 +232,7 @@ document.getElementById('regForm').addEventListener('submit', function(e){
     return;
   }
 
+  // Success
   Swal.fire({
     icon: 'success',
     title: '<b>Your Registration has completed!</b>',
