@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login Portal</title>
+<link rel="icon" href="https://raw.githubusercontent.com/bdziaul/Login.php/main/login-logo.png">
+
+<style>
+body { min-height:100vh; display:flex; justify-content:center; align-items:center; background:url('bg.jpg') no-repeat center center/cover; font-family:'Poppins', sans-serif; }
+.login-container { background: rgba(255,255,255,0.15); backdrop-filter: blur(12px); border-radius:15px; border:2px solid rgba(255,255,255,0.2); box-shadow:0 4px 30px rgba(0,0,0,0.2); padding:40px 35px; width:350px; text-align:center; }
+h1 { font-size:2rem; color:#fff; margin-bottom:25px; text-shadow:0 0 6px rgba(0,0,0,0.3); }
+.input-group { position:relative; margin-bottom:20px; }
+.input-group input { width:100%; padding:12px 12px 12px 12px; border-radius:8px; border:none; outline:none; background:rgba(255,255,255,0.85); font-size:15px; }
+button { width:100%; background:#4CAF50; color:#fff; padding:12px; border:none; border-radius:8px; font-size:16px; cursor:pointer; margin-top:10px; }
+button:hover { background:#43A047; }
+.links { margin-top:18px; display:flex; justify-content:space-between; font-size:14px; }
+.links a { color:#C8E6C9; text-decoration:none; font-weight:500; }
+.links a:hover { color:#A5D6A7; }
+</style>
+
+</head>
+<body>
+
+<div class="login-container">
+  <h1>Login</h1>
+  <form id="loginForm">
+    <div class="input-group">
+      <input type="email" placeholder="Enter Email" name="email" required>
+    </div>
+    <div class="input-group">
+      <input type="password" placeholder="Enter Password" id="password" name="password" required>
+    </div>
+    <button type="submit">Sign In</button>
+  </form>
+  <div class="links">
+    <a href="registration.html">Create new account</a>
+  </div>
+</div>
+
+<!-- Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-database-compat.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+const firebaseConfig = {
+  apiKey: "AIzaSyDjt8sx0NSrSju7JnGq36RERZNY8uamScc",
+  authDomain: "udpnchat.firebaseapp.com",
+  databaseURL: "https://udpnchat-default-rtdb.firebaseio.com",
+  projectId: "udpnchat",
+  storageBucket: "udpnchat.firebasestorage.app",
+  messagingSenderId: "1006055561503",
+  appId: "1:1006055561503:web:b543dc4ac8f2e6cbf1b82a",
+  measurementId: "G-W6FGT46QWT"
+};
+firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
+const database = firebase.database();
+
+// Login Function
+document.getElementById('loginForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  const email = this.email.value.trim();
+  const password = this.password.value.trim();
+
+  auth.signInWithEmailAndPassword(email, password)
+    .then(userCredential => {
+      Swal.fire({icon:'success', title:'Login Successful!', timer:1500, showConfirmButton:false});
+      setTimeout(()=>{ window.location.href="dashboard.html"; }, 1600);
+    })
+    .catch(error => {
+      Swal.fire({icon:'error', title:error.message});
+    });
+});
+</script>
+
+</body>
+</html>
