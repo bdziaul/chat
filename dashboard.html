@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard</title>
+<link rel="icon" href="assets/logo.png" type="image/png">
+<link rel="stylesheet" href="styles.css"> <!-- optional -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<!-- Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-database-compat.js"></script>
+<script src="scripts/firebase.js"></script>
+<script src="scripts/dashboard.js"></script>
+</head>
+<body>
+
+<div class="dashboard-container">
+
+  <div class="user-info">
+    <h2>Welcome, <span id="username">User</span></h2>
+    <p>Email: <span id="email"></span></p>
+    <p>Rank: <span id="rank">Newbie</span></p>
+    <p>Points: <span id="points">0</span></p>
+    <button id="logoutBtn">Logout</button>
+  </div>
+
+  <div class="chat-box">
+    <div id="chatMessages" class="chat-messages">
+      <!-- Messages will appear here -->
+    </div>
+    <input type="text" id="messageInput" placeholder="Type a message...">
+    <button id="sendBtn">Send</button>
+  </div>
+
+</div>
+
+</body>
+</html>
