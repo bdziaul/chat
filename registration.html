@@ -184,6 +184,11 @@ button:hover {
       <label>Username:</label>
       <input type="text" id="username" placeholder="Enter your Name" required pattern="^[a-z][a-z0-9-_]{4,}$" minlength="4">
     </div>
+    
+    <div>
+      <label>Your Email:</label>
+      <input type="email" id="email" placeholder="Enter your email" required autocomplete="off">
+    </div>
 
     <div>
       <label>Password:</label>
@@ -210,11 +215,7 @@ button:hover {
       </select>
     </div>
 
-    <div>
-      <label>Your Email:</label>
-      <input type="email" id="email" placeholder="Enter your email" required autocomplete="off">
-    </div>
-
+    
     <button type="submit">👉  Register</button>
   </form>
 
@@ -228,10 +229,10 @@ document.getElementById('regForm').addEventListener('submit', function(e){
   e.preventDefault();
 
   const username = document.getElementById('username').value.trim();
+  const email = document.getElementById('email').value.trim();
   const password = document.getElementById('password').value.trim();
   const confirm = document.getElementById('confirm_password').value.trim();
   const dob = document.getElementById('date').value;
-  const email = document.getElementById('email').value.trim();
 
 // Username length check
 if (username.length < 4) {
@@ -242,6 +243,17 @@ if (username.length < 4) {
   });
   return;
 }
+  
+  // Email validation (format check)
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if(!emailPattern.test(email)){
+    Swal.fire({
+      icon: 'error',
+      title: 'Give It The Correct Email!',
+      confirmButtonColor: '#e53935'
+    });
+    return;
+  }
   
   // Password match
   if (password !== confirm) {
@@ -264,17 +276,6 @@ if (username.length < 4) {
       });
       return;
     }
-  }
-
-  // Email validation (format check)
-  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  if(!emailPattern.test(email)){
-    Swal.fire({
-      icon: 'error',
-      title: 'Give It The Correct Email!',
-      confirmButtonColor: '#e53935'
-    });
-    return;
   }
 
   // Success
