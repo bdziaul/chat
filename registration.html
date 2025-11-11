@@ -1,279 +1,301 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Registration Portal</title>
-<link rel="icon" type="image/png" href="https://raw.githubusercontent.com/bdziaul/Login.php/main/login-logo.png">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registration Portal</title>
+  <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/bdziaul/Login.php/main/login-logo.png">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-<style>
-body {
-  font-family: 'Poppins', sans-serif;
-  background: url('bg.jpg') no-repeat center center fixed;
-  background-size: cover;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  min-height: 100vh;
-  padding-top: 10px;}
-.container {
-  width: 800px;
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(15px);
-  border-radius: 15px;
-  border: 1px solid rgba(255,255,255,0.3);
-  box-shadow: 0 8px 30px rgba(0,0,0,0.2);
-  padding: 20px 50px;
-  color: #fff;
-  margin-top: 8px; /* Container উপরে তোলা */}
-h2 {
-  text-align: center;
-  margin-bottom: 10px;
-  text-shadow: 0 0 6px rgba(0,0,0,0.4);}
-p {
-  text-align: center;
-  font-size: 15px;
-  margin-bottom: 20px;}
-p a {
-  display: inline-block;
-  background: rgba(76,175,80,0.9);
-  color: #fff;
-  padding: 6px 14px;
-  border-radius: 6px;
-  font-weight: 600;
-  text-decoration: none;
-  transition: 0.3s ease;}
-p a:hover {
-  background: rgba(76,175,80,1);
-  box-shadow: 0 0 15px rgba(76,175,80,0.8);
-  transform: scale(1.05);}
-.rules {
-  background: rgba(255,255,255,0.1);
-  border-radius: 8px;
-  padding: 15px 20px;
-  margin: 20px 0;
-  border: 1px solid rgba(255,255,255,0.2);}
-.rules li {
-  margin: 6px 0;
-  font-size: 14px;}
-form {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 15px 30px;}
-label {
-  font-weight: 600;
-  font-size: 14px;
-  margin-bottom: 3px;
-  display: block;}
-input, select {
-  width: 100%;
-  padding: 8px;
-  border: 1px solid rgba(0,0,0,0.2);
-  border-radius: 8px;
-  font-size: 14px;
-  background: #ffffff;
-  color: #000;}
-button {
-  grid-column: span 2;
-  background: rgba(76,175,80,0.9);
-  color: #fff;
-  border: none;
-  padding: 12px;
-  font-size: 16px;
-  border-radius: 8px;
-  cursor: pointer;
-  margin-top: 10px;
-  transition: 0.3s ease;}
-button:hover {
-  background: rgba(76,175,80,1);
-  box-shadow: 0 0 15px rgba(76,175,80,0.8);
-  transform: scale(1.03);}
-.footer {
-  text-align: center;
-  margin-top: 15px;
-  font-size: 14px;}
-.footer a {
-  display: inline-block;
-  background: rgba(76,175,80,0.9);
-  color: #fff;
-  padding: 6px 14px;
-  border-radius: 6px;
-  font-weight: 600;
-  text-decoration: none;
-  transition: 0.3s ease;}
-.footer a:hover {
-  background: rgba(76,175,80,1);
-  box-shadow: 0 0 15px rgba(76,175,80,0.8);
-  transform: scale(1.05);}
-@media(max-width:850px){
-  .container{width:90%;}
-  form{grid-template-columns: 1fr;}}
-</style>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: url('bg.jpg') no-repeat center center fixed;
+      background-size: cover;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+      padding-top: 10px;
+    }
+    .container {
+      width: 800px;
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(15px);
+      border-radius: 15px;
+      border: 1px solid rgba(255,255,255,0.3);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+      padding: 20px 50px;
+      color: #fff;
+      margin-top: 8px; /* Container উপরে তোলা */
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 10px;
+      text-shadow: 0 0 6px rgba(0,0,0,0.4);
+    }
+    p {
+      text-align: center;
+      font-size: 15px;
+      margin-bottom: 20px;
+    }
+    p a {
+      display: inline-block;
+      background: rgba(76,175,80,0.9);
+      color: #fff;
+      padding: 6px 14px;
+      border-radius: 6px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: 0.3s ease;
+    }
+    p a:hover {
+      background: rgba(76,175,80,1);
+      box-shadow: 0 0 15px rgba(76,175,80,0.8);
+      transform: scale(1.05);
+    }
+    .rules {
+      background: rgba(255,255,255,0.1);
+      border-radius: 8px;
+      padding: 15px 20px;
+      margin: 20px 0;
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+    .rules li {
+      margin: 6px 0;
+      font-size: 14px;
+    }
+    form {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px 30px;
+    }
+    label {
+      font-weight: 600;
+      font-size: 14px;
+      margin-bottom: 3px;
+      display: block;
+    }
+    input, select {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid rgba(0,0,0,0.2);
+      border-radius: 8px;
+      font-size: 14px;
+      background: #ffffff;
+      color: #000;
+    }
+    button {
+      grid-column: span 2;
+      background: rgba(76,175,80,0.9);
+      color: #fff;
+      border: none;
+      padding: 12px;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: 0.3s ease;
+    }
+    button:hover {
+      background: rgba(76,175,80,1);
+      box-shadow: 0 0 15px rgba(76,175,80,0.8);
+      transform: scale(1.03);
+    }
+    .footer {
+      text-align: center;
+      margin-top: 15px;
+      font-size: 14px;
+    }
+    .footer a {
+      display: inline-block;
+      background: rgba(76,175,80,0.9);
+      color: #fff;
+      padding: 6px 14px;
+      border-radius: 6px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: 0.3s ease;
+    }
+    .footer a:hover {
+      background: rgba(76,175,80,1);
+      box-shadow: 0 0 15px rgba(76,175,80,0.8);
+      transform: scale(1.05);
+    }
+    @media(max-width:850px){
+      .container { width:90%; }
+      form { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
+
 <body>
+  <div class="container">
+    <h2>Registration Center</h2>
+    <p><b>Already have an account?</b> <a href="index.html">Login Here</a></p>
 
-<div class="container">
-  <h2>Registration Center</h2>
-  <p><b>Already have an account?</b> <a href="index.html">Login Here</a></p>
+    <ul class="rules">
+      <li>Allowed characters: a-z, 0-9, - _</li>
+      <li>Minimum 5 characters for Username & Password.</li>
+      <li>Username must start with a letter, not symbols or numbers.</li>
+      <li>No capital letters in username.</li>
+      <li>Other info helps recover your account.</li>
+    </ul>
 
-  <ul class="rules">
-  <li>Allowed characters: a-z, 0-9, - _</li>
-  <li>Minimum 5 characters for Username & Password.</li>
-  <li>Username must start with a letter, not symbols or numbers.</li>
-  <li>No capital letters in username.</li>
-  <li>Other info helps recover your account.</li>
-</ul>
+    <style>
+      .rules {
+        background: rgba(255,255,255,0.1);
+        border-radius: 12px;
+        padding: 20px;
+        margin: 20px 0;
+        border: 1px solid rgba(255,255,255,0.3);
+        list-style: none;
+      }
+      .rules li {
+        position: relative;
+        padding-left: 30px;
+        margin: 10px 0;
+        font-size: 15px;
+        line-height: 1.5;
+        transition: 0.3s ease;
+      }
+      .rules li::before {
+        content: "📢"; /* Info icon */
+        position: absolute;
+        left: 0;
+        top: 0;
+        color: #4caf50;
+        font-weight: bold;
+        font-size: 18px;
+        line-height: 1.2;
+      }
+      .rules li:hover {
+        background: rgba(76,175,80,0.1);
+        border-radius: 8px;
+        padding-left: 28px;
+      }
+    </style>
 
-<style>
-.rules {
-  background: rgba(255,255,255,0.1);
-  border-radius: 12px;
-  padding: 20px;
-  margin: 20px 0;
-  border: 1px solid rgba(255,255,255,0.3);
-  list-style: none;}
-.rules li {
-  position: relative;
-  padding-left: 30px;
-  margin: 10px 0;
-  font-size: 15px;
-  line-height: 1.5;
-  transition: 0.3s ease;}
-.rules li::before {
-  content: "📢"; /* Info icon */
-  position: absolute;
-  left: 0;
-  top: 0;
-  color: #4caf50;
-  font-weight: bold;
-  font-size: 18px;
-  line-height: 1.2;}
-.rules li:hover {
-  background: rgba(76,175,80,0.1);
-  border-radius: 8px;
-  padding-left: 28px;}
-</style>
-
-  <form id="regForm">
-    <div>
-      <label>Username:</label>
-      <input type="text" id="username" placeholder="Enter your Name" required pattern="^[a-z][a-z0-9-_]{4,}$" minlength="4">
-    </div>
-    
-    <div>
-      <label>Your Email:</label>
-      <input type="email" id="email" placeholder="Enter your email" required autocomplete="off">
-    </div>
-
-    <div>
-      <label>Password:</label>
-      <input type="password" id="password" placeholder="Enter your Password" required minlength="5">
-    </div>
-
-    <div>
-      <label>Confirm Password:</label>
-      <input type="password" id="confirm_password" placeholder="Re-Enter Password" required minlength="5">
-    </div>
-
-    <div>
-      <label>Date Of Birth:</label>
-      <input type="date" id="date" required>
-    </div>
-
-    <div>
-      <label>Gender:</label>
-      <select required>
-        <option value="">Select</option>
-        <option>Male</option>
-        <option>Female</option>
-        <option>Other</option>
-      </select>
-    </div>
-
-    
-
-    
-    <button type="submit">👉  Register</button>
-  </form>
-
-  <div class="footer">
-    🌐<a href="index.html">Home Page</a>
-  </div>
-</div>
-
-<script>
-document.getElementById('regForm').addEventListener('submit', function(e){
-  e.preventDefault();
-
-  const username = document.getElementById('username').value.trim();
-  const email = document.getElementById('email').value.trim();
-  const password = document.getElementById('password').value.trim();
-  const confirm = document.getElementById('confirm_password').value.trim();
-  const dob = document.getElementById('date').value;
-
-// Username length check
-if (username.length < 4) {
-  Swal.fire({
-    icon: 'warning',
-    title: 'Please Give Your Name At Last 4 Disits!',
-    confirmButtonColor: '#fbc02d'  });
-  return;}
-  
-  // Email validation (format check)
-  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  if(!emailPattern.test(email)){
-    Swal.fire({
-      icon: 'error',
-      title: 'Give It The Correct Email!',
-      confirmButtonColor: '#e53935'
-    });
-    return;
-  }
-  
-  // Password match
-  if (password !== confirm) {
-    Swal.fire({
-      icon: 'error',
-      title: 'Password Doesn’t Match!',
-      confirmButtonColor: '#e53935'    });
-    return;  }
-
-  // DOB validation
-  if(dob){
-    const year = new Date(dob).getFullYear();
-    if(year < 1960 || year > 2015){
-      Swal.fire({
-        icon: 'error',
-        title: 'Age Is Not Acceptable!',
-        confirmButtonColor: '#e53935' });
-      return; }}
-
-  // Success
-  Swal.fire({
-    icon: 'success',
-    title: '<b>Your Registration has completed!</b>',
-    html: `
-      <div style="font-size:15px; text-align:left; line-height:1.6; margin-top:8px;">
-        <b>Username:</b> ${username}<br>
-        <b>Password:</b> ${password}<br>
-        <b>Email:</b> ${email}<br><br>
-        <b>Dear ${username},</b> We Have Saved Your Information.<br>
-        The Chat System Will Be Launched Very Soon!<br><br>
-        <div style="text-align:center; margin-top:5px;">
+    <form id="regForm">
+      <div>
+        <label>Username:</label>
+        <input type="text" id="username" placeholder="Enter your Name" required pattern="^[a-z][a-z0-9-_]{4,}$" minlength="4">
       </div>
-    `,
-    confirmButtonText: 'Submit',
-    confirmButtonColor: '#4caf50',
-    allowOutsideClick: false,
-    timer: 20000,timerProgressBar: true  }).then(() => {
-    window.location.href = 'index.html';  });
+      <div>
+        <label>Your Email:</label>
+        <input type="email" id="email" placeholder="Enter your email" required autocomplete="off">
+      </div>
+      <div>
+        <label>Password:</label>
+        <input type="password" id="password" placeholder="Enter your Password" required minlength="5">
+      </div>
+      <div>
+        <label>Confirm Password:</label>
+        <input type="password" id="confirm_password" placeholder="Re-Enter Password" required minlength="5">
+      </div>
+      <div>
+        <label>Date Of Birth:</label>
+        <input type="date" id="date" required>
+      </div>
+      <div>
+        <label>Gender:</label>
+        <select required>
+          <option value="">Select</option>
+          <option>Male</option>
+          <option>Female</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <button type="submit">👉 Register</button>
+    </form>
 
-  this.reset();});
-</script>
+    <div class="footer">
+      🌐 <a href="index.html">Home Page</a>
+    </div>
+  </div>
 
+  <script>
+    document.getElementById('regForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const username = document.getElementById('username').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value.trim();
+      const confirm = document.getElementById('confirm_password').value.trim();
+      const dob = document.getElementById('date').value;
+
+      // Username length check
+      if (username.length < 4) {
+        Swal.fire({
+          icon: 'warning',
+          title: 'Please Give Your Name At Last 4 Disits!',
+          confirmButtonColor: '#fbc02d'
+        });
+        return;
+      }
+
+      // Email validation (format check)
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailPattern.test(email)) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Give It The Correct Email!',
+          confirmButtonColor: '#e53935'
+        });
+        return;
+      }
+
+      // Password match
+      if (password !== confirm) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Password Doesn’t Match!',
+          confirmButtonColor: '#e53935'
+        });
+        return;
+      }
+
+      // DOB validation
+      if (dob) {
+        const year = new Date(dob).getFullYear();
+        if (year < 1960 || year > 2015) {
+          Swal.fire({
+            icon: 'error',
+            title: 'Age Is Not Acceptable!',
+            confirmButtonColor: '#e53935'
+          });
+          return;
+        }
+      }
+
+      // Success
+      Swal.fire({
+        icon: 'success',
+        title: '<b>Your Registration has completed!</b>',
+        html: `
+          <div style="font-size:15px; text-align:left; line-height:1.6; margin-top:8px;">
+            <b>Username:</b> ${username}<br>
+            <b>Password:</b> ${password}<br>
+            <b>Email:</b> ${email}<br><br>
+            <b>Dear ${username},</b> We Have Saved Your Information.<br>
+            The Chat System Will Be Launched Very Soon!<br><br>
+            <div style="text-align:center; margin-top:5px;"></div>
+          </div>
+        `,
+        confirmButtonText: 'Submit',
+        confirmButtonColor: '#4caf50',
+        allowOutsideClick: false,
+        timer: 20000,
+        timerProgressBar: true
+      }).then(() => {
+        window.location.href = 'index.html';
+      });
+
+      this.reset();
+    });
+  </script>
 </body>
 </html>
