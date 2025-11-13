@@ -339,6 +339,48 @@ if (location.protocol === 'view-source:') {
 
 <!-- Firebase Realtime Database -->
 <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-database-compat.js"></script>
+<script>
+/* === Mouse Idle "Zia" Circular Follow (Green) === */
+let idleTimer;
+const ziaDiv = document.createElement("div");
+ziaDiv.textContent = "Zia";
+ziaDiv.style.position = "fixed";
+ziaDiv.style.color = "rgba(0,128,0,0.3)"; // হালকা সবুজ
+ziaDiv.style.background = "rgba(200,255,200,0.35)"; // হালকা সবুজ গোলাকার ব্যাকগ্রাউন্ড
+ziaDiv.style.borderRadius = "50%"; // গোলাকার
+ziaDiv.style.padding = "12px 18px"; // ব্যাকগ্রাউন্ড বড় করা
+ziaDiv.style.fontSize = "14px";
+ziaDiv.style.fontWeight = "600";
+ziaDiv.style.pointerEvents = "none";
+ziaDiv.style.transition = "opacity 0.3s ease, transform 0.1s linear";
+ziaDiv.style.opacity = "0";
+document.body.appendChild(ziaDiv);
 
+let mouseX = 0, mouseY = 0;
+let angle = 0;
+
+document.addEventListener("mousemove", (e) => {
+  clearTimeout(idleTimer);
+  ziaDiv.style.opacity = "0";
+  mouseX = e.pageX;
+  mouseY = e.pageY;
+  
+  idleTimer = setTimeout(() => {
+    ziaDiv.style.opacity = "1";
+    // Circular animation around mouse
+    function animateZia() {
+      angle += 0.05; // ঘূর্ণনের গতি
+      const radius = 25; // কার্সরের চারপাশ দূরত্ব
+      ziaDiv.style.left = mouseX + radius * Math.cos(angle) + "px";
+      ziaDiv.style.top  = mouseY + radius * Math.sin(angle) + "px";
+      if(ziaDiv.style.opacity == "1"){
+        requestAnimationFrame(animateZia);
+      }
+    }
+    animateZia();
+  }, 5000); // 5 সেকেন্ড idle
+});
+</script>
 </body>
 </html>
+
