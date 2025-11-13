@@ -11,14 +11,32 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 * { margin:0; padding:0; box-sizing:border-box; font-family:'Poppins', sans-serif; }
 
+/* === 기본 লেআউট === */
 body {
   min-height:100vh;
   display:flex;
   justify-content:center;
   align-items:center;
   background: url('bg.jpg') no-repeat center center/cover;
+  /* --- Protection: Prevent text select globally --- */
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+  user-select: none !important;
 }
 
+/* Allow text selection inside form inputs (so user can type/copy inside inputs if needed) */
+input, textarea, select {
+  -webkit-user-select: text !important;
+  -moz-user-select: text !important;
+  -ms-user-select: text !important;
+  user-select: text !important;
+}
+
+/* Prevent dragging of images/links */
+img, a { -webkit-user-drag: none; user-drag: none; }
+
+/* Login container styles (unchanged) */
 .login-container {
   background: rgba(255,255,255,0.15);
   backdrop-filter: blur(12px);
@@ -155,7 +173,7 @@ button:hover {
 <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
 </head>
-<body>
+<body oncontextmenu="return false" ondragstart="return false" onselectstart="return false">
 
 <div class="login-container">
 
@@ -186,12 +204,14 @@ button:hover {
   </form>
 
   <div class="links">
-  <a href="https://www.facebook.com/Ziaulz/" target="_blank" style="color:#fff;">Forgotten password?</a>
+    <a href="https://www.facebook.com/Ziaulz/" target="_blank" style="color:#fff;">Forgotten password?</a>
     <a href="registration.html"><b>Create new account</b></a>
   </div>
 </div>
 
 <script>
+// ============ Existing page scripts ============
+
 // পাসওয়ার্ড দেখানো/লুকানো
 function togglePassword() {
   const passwordInput = document.getElementById("password");
@@ -224,11 +244,93 @@ document.getElementById('loginForm').addEventListener('submit', function(e){
   e.preventDefault();
   alert("Login Successful (Demo)");
 });
+
+// ============ Protection scripts ============
+
+// Block selection, copy, cut, paste, context menu, drag
+document.addEventListener('copy', function(e){ e.preventDefault(); });
+document.addEventListener('cut', function(e){ e.preventDefault(); });
+document.addEventListener('paste', function(e){ e.preventDefault(); });
+document.addEventListener('selectstart', function(e){
+  // allow selection inside inputs/textarea/select
+  const tag = (e.target.tagName || '').toLowerCase();
+  if(tag === 'input' || tag === 'textarea' || tag === 'select') return;
+  e.preventDefault();
+});
+document.addEventListener('contextmenu', function(e){
+  e.preventDefault();
+});
+document.addEventListener('dragstart', function(e){
+  e.preventDefault();
+});
+
+// Block common keyboard shortcuts that open devtools or copy/view-source/save
+document.addEventListener('keydown', function(e){
+  // F12
+  if (e.key === 'F12') { e.preventDefault(); return false; }
+
+  // Ctrl / Cmd combos
+  const ctrl = e.ctrlKey || e.metaKey;
+
+  // Ctrl+Shift+I / Ctrl+Shift+J / Ctrl+Shift+C (DevTools)
+  if (ctrl && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C')) {
+    e.preventDefault();
+    return false;
+  }
+
+  // Ctrl+U (view-source), Ctrl+S (save), Ctrl+C (copy), Ctrl+P (print)
+  if (ctrl && (e.key === 'U' || e.key === 'S' || e.key === 'C' || e.key === 'P')) {
+    e.preventDefault();
+    return false;
+  }
+
+  // Ctrl+Shift+K (Firefox web console), Ctrl+Shift+H etc - block many combos
+  if (ctrl && e.shiftKey && (e.key === 'K' || e.key === 'H')) {
+    e.preventDefault();
+    return false;
+  }
+});
+
+// Detect if devtools opened via timing trick (best-effort) and redirect/blank console
+(function detectDevTools(){
+  let last = new Date();
+  const threshold = 100; // ms
+  setInterval(function(){
+    const start = new Date();
+    // busy loop for small time to detect slowdown if devtools open (heuristic)
+    for(let i=0;i<100000;i++) { Math.sqrt(i); }
+    const delta = new Date() - start;
+    if (delta > 200) {
+      try {
+        // clear console and optionally close window
+        console.clear();
+        // Optionally, you can redirect or take action:
+        // window.location.replace('about:blank');
+      } catch(e){}
+    }
+  }, 1000);
+})();
+
+// Also override console methods to make inspection slightly harder
+(function protectConsole(){
+  try {
+    const noop = function(){};
+    console.log = noop;
+    console.warn = noop;
+    console.error = noop;
+    console.info = noop;
+    console.debug = noop;
+  } catch(e){}
+})();
+
+// prevent view-source: (best-effort; browsers may ignore)
+if (location.protocol === 'view-source:') {
+  try { window.stop(); } catch(e){}
+}
+
 </script>
 
-</body>
-</html>
-
+<!-- Firebase (moved inside body before closing) -->
 <!-- Firebase Core -->
 <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
 
@@ -238,3 +340,5 @@ document.getElementById('loginForm').addEventListener('submit', function(e){
 <!-- Firebase Realtime Database -->
 <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-database-compat.js"></script>
 
+</body>
+</html>
